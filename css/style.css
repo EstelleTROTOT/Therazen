@@ -64,10 +64,50 @@ h3 {
     transition: 0.25s ease;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
+.btn {
+    padding: 15px 28px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.12);
+}
+.btn--primary:hover {
+    background: #2d5f50;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 14px 26px rgba(69, 101, 86, 0.28);
+}
+.btn--secondary {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    color: var(--text);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: all 0.3s ease;
+}
+
+.btn--secondary:hover {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+}
+
+.consultation-card .btn--secondary:hover {
+    background: #b99156;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 14px 26px rgba(202, 165, 107, 0.3);
+}
+
+.btn--outline:hover {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+}
 .btn--primary {
     background: var(--green);
     color: white;
@@ -86,12 +126,14 @@ h3 {
 }
 
 .header {
-    background: rgba(255,255,255,0.95);
-    border-bottom: 1px solid #ececec;
+    background: rgba(255, 255, 255, 0.68);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 .navbar {
@@ -126,6 +168,32 @@ h3 {
 .navbar__menu a {
     font-size: 0.95rem;
     font-weight: 500;
+}
+
+.navbar__menu a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.navbar__menu a:hover {
+    color: var(--green);
+}
+
+.navbar__menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0;
+    height: 2px;
+    background: var(--green);
+    transition: width 0.3s ease;
+}
+
+.navbar__menu a:hover::after {
+    width: 100%;
 }
 
 .navbar__actions {
@@ -201,6 +269,15 @@ h3 {
 .hero-feature p {
     font-size: 0.85rem;
     margin: 0;
+}
+
+.hero-feature {
+    transition: 0.3s ease;
+}
+
+.hero-feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
 }
 
 .hero__image {
@@ -396,12 +473,30 @@ h3 {
 .consultation-card .btn--primary {
     background: #2f6b59;
     color: white;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.consultation-card .btn--primary:hover {
+    background: #255748;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 28px rgba(47, 107, 89, 0.35);
 }
 
 .consultation-card .btn--secondary {
     background: #caa56b;
     color: white;
     border: none;
+    backdrop-filter: none;
+}
+
+.consultation-card .btn--secondary:hover {
+    background: #b99156;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 28px rgba(202, 165, 107, 0.35);
 }
 
 /* BLOC PHOTO */
@@ -508,7 +603,17 @@ h3 {
     padding-right: 38px;
     border-right: 1px solid #e6ddd2;
 }
+.about__card a,
+.therapy-card a {
+    transition: 0.3s ease;
+    display: inline-block;
+}
 
+.about__card a:hover,
+.therapy-card a:hover {
+    color: #2d5f50;
+    transform: translateX(6px);
+}
 .testimonial {
     padding: 0 38px;
     border-right: 1px solid #e6ddd2;
@@ -517,7 +622,27 @@ h3 {
 .faq {
     padding-left: 38px;
 }
+.faq__item button {
+    width: 100%;
+    background: transparent;
+    padding: 22px 0;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #222;
+    position: relative;
+    transition: 0.3s ease;
+}
 
+.faq__item button:hover {
+    color: var(--green);
+    padding-left: 10px;
+}
+
+.faq__item button:hover::after {
+    transform: translateY(-50%) rotate(90deg);
+    color: var(--green);
+}
 .about h2,
 .testimonial h2,
 .faq h2 {
