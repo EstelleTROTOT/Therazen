@@ -7,6 +7,7 @@
 
 img {
     display: block;
+    max-width: 100%;
 }
 
 ul {
@@ -24,9 +25,9 @@ button {
     font-family: inherit;
 }
 
-/* VARIABLES */
 :root {
     --green: #456556;
+    --green-dark: #173f36;
     --beige: #f5efe6;
     --light-bg: #fcfaf7;
     --white: #ffffff;
@@ -35,7 +36,6 @@ button {
     --border: #e9e2d8;
 }
 
-/* BASE */
 body {
     font-family: Arial, sans-serif;
     background: var(--light-bg);
@@ -56,13 +56,16 @@ h3 {
     margin: auto;
 }
 
-/* BUTTONS */
 .btn {
-    padding: 14px 26px;
+    padding: 15px 28px;
     border-radius: 12px;
     font-size: 0.95rem;
     font-weight: 600;
-    transition: 0.3s ease;
+    transition: 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
 }
 
 .btn--primary {
@@ -82,13 +85,13 @@ h3 {
     color: var(--green);
 }
 
-/* HEADER */
 .header {
-    background: white;
+    background: rgba(255,255,255,0.95);
     border-bottom: 1px solid #ececec;
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(10px);
 }
 
 .navbar {
@@ -101,12 +104,12 @@ h3 {
 .navbar__logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 4px;
 }
 
 .navbar__logo img {
-    width: 42px;
-    height: 42px;
+    width: 160px;
+    height: 70px;
     object-fit: contain;
 }
 
@@ -130,48 +133,57 @@ h3 {
     gap: 12px;
 }
 
-/* HERO */
 .hero {
-    background: var(--beige);
-    padding: 80px 0;
+    background: linear-gradient(180deg, #f8f2e9 0%, #f5efe6 100%);
+    padding: 35px 0 50px;
 }
 
 .hero__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 70px;
+    gap: 55px;
     align-items: center;
 }
-
 .hero__text h1 {
-    font-size: 4.6rem;
-    line-height: 1.08;
-    max-width: 580px;
-    margin-bottom: 28px;
+    font-size: 4rem;
+    line-height: 1;
+    max-width: 480px;
+    margin-bottom: 20px;
 }
 
 .hero__text p {
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 520px;
-    margin-bottom: 30px;
+    font-size: 0.95rem;
+    color: #5f5f5f;
+    max-width: 430px;
+    margin-bottom: 26px;
+    line-height: 1.7;
 }
 
 .hero__buttons {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
-    margin-bottom: 40px;
+    max-width: 640px;
+    margin-bottom: 28px;
 }
 
+
+
 .hero__features {
-    display: flex;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 640px;
 }
 
 .hero-feature {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
+    background: #f3e8d7;
+    padding: 18px 20px;
+    border-radius: 16px;
+    width: 100%;
 }
 
 .hero-feature img {
@@ -191,162 +203,451 @@ h3 {
     margin: 0;
 }
 
-.hero__image img {
-    width: 100%;
-    height: 620px;
-    object-fit: cover;
-    border-radius: 22px;
+.hero__image {
+    background: #e8dccd;
+    padding: 16px;
+    border-radius: 28px;
 }
 
-/* THERAPIES */
+.hero__image img {
+    width: 100%;
+    height: 560px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
 .therapies {
-    padding: 100px 0;
+    padding: 35px 0 45px;
     text-align: center;
 }
 
 .therapies h2 {
-    font-size: 3rem;
-    margin-bottom: 12px;
+    font-size: 2.3rem;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+.consultations h2,
+.steps h2 {
+    font-size: 2.5rem;
+    margin-bottom: 38px;
+    line-height: 1.1;
 }
 
 .section-subtitle {
-    color: var(--muted);
-    margin-bottom: 55px;
-    font-size: 1rem;
+    color: #7a7a7a;
+    margin-bottom: 28px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.2px;
 }
-
 .therapies__cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 0;
+    background: white;
+    border: 1px solid #d9e4da;
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 .therapy-card {
     background: white;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 40px 28px;
-    text-align: center;
+    padding: 42px 34px;
+    text-align: left;
+    min-height: 340px;
+    border-right: 1px solid #d9e4da;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: 0.3s ease;
+    position: relative;
 }
+.therapy-card:last-child {
+    border-right: none;
+}
+
+.therapy-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.05);
+}
+
 
 .therapy-card img {
-    width: 70px;
-    height: 70px;
+    width: 80px;              /* taille réelle de l’icône */
+    height: 80px;
     object-fit: contain;
-    margin: 0 auto 20px;
-}
 
+    padding: 10px;            /* crée la bulle autour */
+    box-sizing: content-box;  /* important */
+
+    background: #f3e8d7;      /* beige comme la maquette */
+    border-radius: 50%;
+
+    margin: 0 0 24px;
+}
 .therapy-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 18px;
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    line-height: 1.45;
+    max-width: 220px;
 }
 
 .therapy-card p {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-bottom: 20px;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 28px;
 }
 
 .therapy-card a {
     color: var(--green);
     font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: auto;
 }
 
 /* CONSULTATIONS */
 .consultations {
-    padding: 100px 0;
+    padding: 35px 0 35px;
 }
 
 .consultations h2 {
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 55px;
+    font-size: 2.5rem;   /* plus petit */
+    margin-bottom: 45px;
+    line-height: 1.1;
 }
 
 .consultations__grid {
     display: grid;
-    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
 }
 
+/* CARDS */
 .consultation-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: white;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: stretch;
     border-radius: 22px;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1px solid #e9dfd3;
+    min-height: 310px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
 }
 
+/* fond vert clair visio */
+.consultation-card:first-child {
+    background: #eef4ee;
+}
+
+/* fond beige domicile */
+.consultation-card:last-child {
+    background: #f6efe5;
+}
+
+/* TEXTE */
 .consultation-card__content {
-    padding: 55px;
+    padding: 34px 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+/* ICONES CAMERA / MAISON */
 .consultation-card__content > img {
-    width: 42px;
-    height: 42px;
+    width: 54px;   /* plus grand */
+    height: 54px;
     object-fit: contain;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 }
 
+/* TITRES "En visioconférence" / "À domicile" */
 .consultation-card__content h3 {
-    font-size: 2rem;
+    font-size: 1.55rem;   /* plus petit */
+    margin-bottom: 18px;
+    line-height: 1.2;
+}
+
+/* LISTE */
+.consultation-card__content ul {
     margin-bottom: 24px;
 }
 
-.consultation-card__content ul {
-    margin-bottom: 30px;
-}
-
 .consultation-card__content li {
-    margin-bottom: 12px;
-    color: var(--muted);
+    margin-bottom: 10px;
+    color: #4f4f4f;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
+/* BOUTONS EXACT STYLE MAQUETTE */
+.consultation-card .btn {
+    width: fit-content;
+    padding: 13px 22px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    box-shadow: none;
+    transform: none;
+}
+
+.consultation-card .btn--primary {
+    background: #2f6b59;
+    color: white;
+}
+
+.consultation-card .btn--secondary {
+    background: #caa56b;
+    color: white;
+    border: none;
+}
+
+/* BLOC PHOTO */
+.consultation-card__image {
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LE CADRE JAUNE/BEIGE AUTOUR DE L'IMAGE */
 .consultation-card__image img {
     width: 100%;
     height: 100%;
-    min-height: 340px;
+    min-height: 280px;
     object-fit: cover;
+    border-radius: 16px;
+    background: #e8dccd;
 }
 
+
+/*step*/
 /* STEPS */
 .steps {
-    padding: 100px 0;
+    padding: 55px 0 45px;   /* réduit l’espace au-dessus et en dessous */
     background: white;
 }
 
 .steps h2 {
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 55px;
+    font-size: 2.5rem;   /* même taille que Deux modes de consultation */
+    margin-bottom: 38px;
+    line-height: 1.1;
 }
 
 .steps__grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 24px;
+    gap: 10px;
+    align-items: start;
+    position: relative;
 }
 
 .step-card {
     text-align: center;
+    position: relative;
+    padding: 0 12px;
+}
+
+/* AJOUT DES > ENTRE LES ETAPES */
+.step-card:not(:last-child)::after {
+    content: "›";
+    position: absolute;
+    top: 24px;
+    right: -10px;
+    font-size: 3rem;
+    color: #c9b9a2;
+    font-weight: 300;
+    font-family: Arial, sans-serif;
 }
 
 .step-card img {
     width: 52px;
     height: 52px;
     object-fit: contain;
-    margin: 0 auto 18px;
+    margin: 0 auto 14px;
 }
 
 .step-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
 }
 
 .step-card p {
-    color: var(--muted);
+    color: #4f4f4f;
     font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 160px;
+    margin: 0 auto;
+}
+/*about*/
+.about {
+    background: #faf8f4;
+    padding: 70px 0;
+    border-top: 1px solid #ece5db;
+}
+
+.about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    align-items: start;
+}
+
+.about__card,
+.testimonial,
+.faq {
+    min-height: 260px;
+}
+
+.about__card {
+    padding-right: 38px;
+    border-right: 1px solid #e6ddd2;
+}
+
+.testimonial {
+    padding: 0 38px;
+    border-right: 1px solid #e6ddd2;
+}
+
+.faq {
+    padding-left: 38px;
+}
+
+.about h2,
+.testimonial h2,
+.faq h2 {
+    font-size: 2rem;
+    margin-bottom: 28px;
+    color: #1d1d1d;
+    line-height: 1.1;
+}
+
+.about__card img {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+    margin-right: 18px;
+    margin-bottom: 12px;
+}
+
+.about__card p {
+    font-size: 0.95rem;
+    color: #4d4d4d;
+    line-height: 1.8;
+}
+
+.about__card a {
+    display: inline-block;
+    margin-top: 22px;
+    color: var(--green);
+    font-weight: 600;
+}
+
+.testimonial blockquote {
+    background: white;
+    border: 1px solid #ece2d7;
+    border-radius: 18px;
+    padding: 34px;
+    line-height: 1.9;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+}
+
+.testimonial p {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #a5771f;
+    font-weight: 600;
+}
+
+.faq__item {
+    border-bottom: 1px solid #ece5db;
+}
+
+.faq__item button {
+    width: 100%;
+    background: transparent;
+    padding: 22px 0;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #222;
+    position: relative;
+}
+
+.faq__item button::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+.footer {
+    background: linear-gradient(90deg, #173f36 0%, #1f5a4b 100%);
+    padding: 42px 0 18px;
+    margin-top: 60px;
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.footer__brand {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer__brand img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.footer__brand h2 {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    color: white;
+}
+
+.footer__brand p {
+    width: 100%;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 220px;
+}
+
+.footer h3 {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.footer ul li {
+    color: rgba(255,255,255,0.88);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.footer__copyright {
+    text-align: center;
+    color: rgba(255,255,255,0.82);
+    font-size: 0.85rem;
+    margin-top: 28px;
 }
