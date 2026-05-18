@@ -26,13 +26,25 @@
                 <li><a href="#">À propos</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-
+<button class="navbar__burger" aria-label="Ouvrir le menu">
+    ☰
+</button>
             <div class="navbar__actions">
                 <button class="btn btn--secondary">Se connecter</button>
                 <button class="btn btn--primary">Prendre rendez-vous</button>
             </div>
 
         </nav>
+        <div class="mobile-menu">
+    <a href="#">Accueil</a>
+    <a href="#">Nos thérapies</a>
+    <a href="#">Consultations</a>
+    <a href="#">À propos</a>
+    <a href="#">Contact</a>
+
+    <button class="btn btn--secondary">Se connecter</button>
+    <button class="btn btn--primary">Prendre rendez-vous</button>
+</div>
     </header>
 
     <main>
@@ -239,7 +251,7 @@
                     <img src="images/moi.jpg" alt="Thérapeute">
 
                     <p>
-                        Je suis thérapeute diplômée, passionnée par l’humain
+                        Je suis thérapeute passionnée par l’humain
                         et le développement personnel.
                         Mon approche est basée sur l’écoute,
                         la bienveillance et des méthodes éprouvées.
@@ -285,53 +297,50 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container footer__grid">
+<footer class="footer">
+    <div class="container">
 
-            <div class="footer__brand">
-                <img src="images/logo therazen.png" alt="Logo Thera Zen">
-                <h2>Thera Zen</h2>
-                <p>Votre bien-être mental est notre priorité.</p>
-            </div>
-
-            <div>
-                <h3>Navigation</h3>
-                <ul>
-                    <li>Accueil</li>
-                    <li>Nos thérapies</li>
-                    <li>Consultations</li>
-                    <li>À propos</li>
-                    <li>Contact</li>
-                </ul>
-            </div>
-
-            <div>
-                <h3>Informations</h3>
-                <ul>
-                    <li>FAQ</li>
-                    <li>Mentions légales</li>
-                    <li>Politique de confidentialité</li>
-                    <li>Conditions générales d'utilisation</li>
-                </ul>
-            </div>
-
-            <div>
-                <h3>Contact</h3>
-                <ul>
-                    <li>07 57 49 60 30</li>
-                    <li>estelletherapies@gmail.com</li>
-                    <li>Saint-jean-de-Niost</li>
-                </ul>
-            </div>
-
+        <div class="footer__brand">
+            <h2>Thera Zen</h2>
+            <p>Votre bien-être mental est notre priorité.</p>
         </div>
+
+        <div class="footer__line"></div>
+
+        <ul class="footer__links">
+            <li>Accueil</li>
+            <li>Nos thérapies</li>
+            <li>Consultations</li>
+            <li>À propos</li>
+            <li>Contact</li>
+        </ul>
+
+        <div class="footer__line"></div>
+
+        <ul class="footer__legal">
+            <li>FAQ</li>
+            <li>Mentions légales</li>
+            <li>Politique de confidentialité</li>
+            <li>Conditions générales d'utilisation</li>
+        </ul>
+
+        <div class="footer__line"></div>
+
+        <ul class="footer__contact">
+            <li>07 57 49 60 30</li>
+            <li>estelletherapies@gmail.com</li>
+            <li>Saint-Jean-de-Niost</li>
+        </ul>
+
+        <div class="footer__line"></div>
 
         <p class="footer__copyright">
             © 2026 Thera Zen - Tous droits réservés.
         </p>
-    </footer>
 
+    </div>
+</footer>
+<script src="script.js"></script>
 </body>
 
 </html>
