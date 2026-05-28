@@ -13,6 +13,7 @@ class Appointment
 
     public function getAppointmentsByDate($date)
     {
+        
         $sql = "SELECT * FROM appointments 
                 WHERE DATE(appointment_start) = :date
                 AND appointment_status = 'scheduled'
@@ -25,7 +26,21 @@ class Appointment
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getLastAppointmentByDate($date)
+{
+    $sql = "SELECT * FROM appointments
+            WHERE DATE(appointment_start) = :date
+            AND appointment_status = 'scheduled'
+            ORDER BY appointment_end DESC
+            LIMIT 1";
 
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([
+        ':date' => $date
+    ]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
     public function getBlockedSlotsByDate($date)
     {
         $sql = "SELECT * FROM blocked_slots
