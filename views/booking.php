@@ -12,7 +12,7 @@
 
     <title>Thera Zen - Réservation</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css?v=1">
 
 </head>
 
@@ -25,14 +25,14 @@
         <nav class="navbar container">
 
             <div class="navbar__logo">
-                <img src="images/logo therazen.png" alt="Logo Thera Zen">
+                <img src="../images/logo therazen.png" alt="Logo Thera Zen">
                 <span>Thera Zen</span>
             </div>
 
             <ul class="navbar__menu">
 
                 <li>
-                    <a href="index.html">Accueil</a>
+                    <a href="?page=home">Accueil</a>
                 </li>
 
                 <li>
@@ -63,14 +63,28 @@
                     Se connecter
                 </button>
 
-                <a href="booking.html" class="btn btn--primary">
+                <a href="?page=booking" class="btn btn--primary">
                     Prendre rendez-vous
                 </a>
 
             </div>
 
         </nav>
+        <div class="mobile-menu">
+    <a href="?page=home">Accueil</a>
+    <a href="#">Nos thérapies</a>
+    <a href="#">Consultations</a>
+    <a href="#">À propos</a>
+    <a href="#">Contact</a>
 
+    <button class="btn btn--secondary">
+        Se connecter
+    </button>
+
+    <a href="?page=booking" class="btn btn--primary">
+        Prendre rendez-vous
+    </a>
+</div>
     </header>
 
     <!-- BOOKING -->
@@ -98,10 +112,7 @@
 
                     <div class="booking__image">
 
-                        <img
-                            src="images/sofa.png"
-                            alt="Salon thérapeutique"
-                        >
+                        <img src="../images/sofa.png" alt="Salon thérapeutique" >
 
                     </div>
 
@@ -109,7 +120,7 @@
 
                         <!-- VIDEO -->
 
-                        <div class="booking__type booking__type--active">
+                        <div class="booking__type booking__type--active" data-type="consultation_video">
 
                             <div class="booking__type-top">
 
@@ -120,102 +131,35 @@
                                     </div>
 
                                     <div>
-
-                                        <h3>
-                                            Consultation vidéo
-                                        </h3>
-
-                                        <p>
-                                            En visioconférence depuis chez vous
-                                        </p>
-
+                                        <h3> Consultation vidéo </h3>
+                                        <p> En visioconférence depuis chez vous </p>
                                     </div>
-
                                 </div>
-
-                                <div class="booking__check">
-                                    ✓
-                                </div>
-
+                                
                             </div>
-
                         </div>
 
                         <!-- DOMICILE -->
 
-                        <div class="booking__type">
-
+                        <div class="booking__type"  data-type="consultation_domicile">
                             <div class="booking__type-top">
-
                                 <div class="booking__type-left">
-
-                                    <div class="booking__type-icon">
-                                        🏠
-                                    </div>
-
+                                    <div class="booking__type-icon">🏠</div>
                                     <div>
-
-                                        <h3>
-                                            Consultation à domicile
-                                        </h3>
-
-                                        <p>
-                                            À votre domicile
-                                        </p>
-
+                                        <h3>Consultation à domicile</h3>
+                                        <p> À votre domicile</p>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
 
-                        <!-- CABINET -->
-
-                        <div class="booking__type">
-
-                            <div class="booking__type-top">
-
-                                <div class="booking__type-left">
-
-                                    <div class="booking__type-icon">
-                                        🪑
-                                    </div>
-
-                                    <div>
-
-                                        <h3>
-                                            Consultation au cabinet
-                                        </h3>
-
-                                        <p>
-                                            Dans mon cabinet
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
 
                     <!-- SECURITY -->
 
                     <div class="booking__security">
 
-                        <h4>
-                            🛡️ Confidentialité & Sécurité
-                        </h4>
-
-                        <p>
-                            Vos informations sont 100% sécurisées
-                            et strictement confidentielles.
-                        </p>
-
+                        <h4>🛡️ Confidentialité & Sécurité</h4>
+                        <p> Vos informations sont 100% sécurisées et strictement confidentielles.</p>
                     </div>
 
                 </aside>
@@ -227,58 +171,44 @@
                     <!-- STEPS -->
 
                     <div class="booking__steps">
-
                         <div class="booking__step">
-
-                            <div class="booking__step-number">
-                                1
-                            </div>
-
-                            <p>
-                                Type & Date
-                            </p>
-
+                            <div class="booking__step-number"> 1 </div>
+                            <p>Type & Date </p>
                         </div>
-
                         <div class="booking__step">
-
-                            <div class="booking__step-number">
-                                2
-                            </div>
-
-                            <p>
-                                Créneau horaire
-                            </p>
-
+                            <div class="booking__step-number">2</div>
+                            <p>Créneau horaire</p>
                         </div>
-
                         <div class="booking__step">
-
-                            <div class="booking__step-number">
-                                3
-                            </div>
-
-                            <p>
-                                Vos informations
-                            </p>
-
+                            <div class="booking__step-number">3</div>
+                            <p>Vos informations</p>
                         </div>
-
                         <div class="booking__step">
-
-                            <div class="booking__step-number">
-                                4
-                            </div>
-
-                            <p>
-                                Confirmation
-                            </p>
-
+                            <div class="booking__step-number"> 4</div>
+                            <p> Confirmation</p>
                         </div>
-
                     </div>
 
-                    <!-- CALENDAR -->
+            
+        
+                            <!-- INFOS -->
+
+                            <div class="booking__infos">
+
+                                <span>
+                                    ⏰ Europe/Paris (GMT+2)
+                                </span>
+
+                                <span>
+                                    🎥 60 minutes
+                                </span>
+
+                                <span>
+                                    💳 40€
+                                </span>
+
+                            </div>
+            <!-- CALENDAR -->
 
                     <div class="booking__calendar">
 
@@ -511,49 +441,22 @@
                                 </div>
 
                             </div>
-
-                            <!-- HOURS -->
-
                             <div class="booking__hours">
 
-                                <button class="booking__hour">
-                                    10:00
-                                </button>
+<?php foreach ($slots as $slot): ?>
 
-                                <button class="booking__hour">
-                                    11:00
-                                </button>
+    <button class="booking__hour">
+        <?= $slot ?>
+    </button>
 
-                                <button class="booking__hour">
-                                    12:00
-                                </button>
+<?php endforeach; ?>
 
-                                <button class="booking__hour">
-                                    13:00
-                                </button>
+</div>
+                        </div>
 
-                                <button class="booking__hour">
-                                    14:00
-                                </button>
+                    </div>
 
-                                <button class="booking__hour booking__hour--active">
-                                    15:17
-                                </button>
-
-                                <button class="booking__hour">
-                                    16:00
-                                </button>
-
-                                <button class="booking__hour">
-                                    17:00
-                                </button>
-
-                                <button class="booking__hour">
-                                    18:00
-                                </button>
-
-                            </div>
-
+                    
                             <!-- NOTICE -->
 
                             <p class="booking__notice">
@@ -564,6 +467,9 @@
                                 et du temps de préparation.
 
                             </p>
+                            <div class="booking__actions">
+    <button class="btn btn--primary booking__continue">Continuer</button>
+</div>
 
                         </div>
 
@@ -572,6 +478,7 @@
                 </div>
 
             </div>
+
 
         </div>
 
@@ -638,7 +545,7 @@
 
     </footer>
 
-    <script src="script.js"></script>
+<script src="../script.js?v=1"></script>
 
 </body>
 

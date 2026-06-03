@@ -1,17 +1,87 @@
-const burger = document.querySelector(".navbar__burger");
-const mobileMenu = document.querySelector(".mobile-menu");
+window.onload = function () {
 
-if (burger && mobileMenu) {
-    burger.addEventListener("click", function () {
-        mobileMenu.classList.toggle("active");
+    // Sélection du jour
+
+    const bookingDays = document.querySelectorAll(".booking__day");
+
+    bookingDays.forEach(day => {
+        day.addEventListener("click", function () {
+
+            bookingDays.forEach(item => item.classList.remove("booking__day--active"));
+
+            this.classList.add("booking__day--active");
+
+            console.log("Jour sélectionné :", this.textContent);
+
+        });
     });
+
+    // Menu burger
+
+    const burger = document.querySelector(".navbar__burger");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    if (burger && mobileMenu) {
+        burger.addEventListener("click", function () {
+            mobileMenu.classList.toggle("active");
+        });
+    }
+
+    // Afficher / masquer mot de passe
+
+    const showPasswordCheckbox = document.getElementById("show-password");
+    const passwordInput = document.getElementById("password");
+
+    if (showPasswordCheckbox && passwordInput) {
+        showPasswordCheckbox.addEventListener("change", function () {
+            passwordInput.type = this.checked ? "text" : "password";
+        });
+    }
+
+    // Sélection du créneau horaire
+
+    const bookingHours = document.querySelectorAll(".booking__hour");
+
+    bookingHours.forEach(hour => {
+        hour.addEventListener("click", function () {
+
+            bookingHours.forEach(item => item.classList.remove("booking__hour--active"));
+
+            this.classList.add("booking__hour--active");
+
+            console.log("Créneau sélectionné :", this.textContent);
+
+        });
+    });
+
+    // Sélection du type de consultation
+
+    const consultationTypes = document.querySelectorAll(".booking__type");
+
+    consultationTypes.forEach(type => {
+        type.addEventListener("click", function () {
+
+            consultationTypes.forEach(item => item.classList.remove("booking__type--active"));
+
+            this.classList.add("booking__type--active");
+
+            console.log(this.dataset.type);
+
+        });
+    });
+
+    // Bouton Continuer → étape informations patient
+
+    const continueBtn = document.querySelector(".booking__continue");
+
+if (continueBtn) {
+
+    continueBtn.addEventListener("click", function () {
+
+        window.location.href = "?page=booking-informations";
+
+    });
+
 }
 
-const showPasswordCheckbox = document.getElementById("show-password");
-const passwordInput = document.getElementById("password");
-
-if (showPasswordCheckbox && passwordInput) {
-    showPasswordCheckbox.addEventListener("change", function () {
-        passwordInput.type = this.checked ? "text" : "password";
-    });
-}
+};

@@ -50,6 +50,12 @@ class Router
                 $controller->index();
                 break;
 
+                case 'booking-informations':
+    require_once __DIR__ . '/../controllers/BookingController.php';
+    $controller = new BookingController();
+    $controller->informations();
+    break;
+
             default:
                 echo "Page introuvable";
                 break;
