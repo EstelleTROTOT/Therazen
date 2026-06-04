@@ -43,10 +43,13 @@ class AuthController
             $lastName = $_POST['last_name'];
             $email = $_POST['email'];
             $phone = $_POST['phone'];
-            $password = $_POST['password'];
+$address = $_POST['address'];
+$postalCode = $_POST['postal_code'];
+$city = $_POST['city'];
+$password = $_POST['password'];
 
             $user = new User();
-            $user->create($firstName, $lastName, $email, $password, $phone);
+            $user->create($firstName, $lastName, $email, $password, $phone, $address, $postalCode, $city);
 
             echo "Compte créé avec succès 🎉";
             return;

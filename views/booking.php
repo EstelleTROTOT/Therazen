@@ -248,151 +248,7 @@
 
                             </div>
 
-                            <!-- DAYS -->
-
-                            <div class="booking__days">
-
-                                <button class="booking__day">
-                                    27
-                                </button>
-
-                                <button class="booking__day">
-                                    28
-                                </button>
-
-                                <button class="booking__day">
-                                    29
-                                </button>
-
-                                <button class="booking__day">
-                                    30
-                                </button>
-
-                                <button class="booking__day">
-                                    1
-                                </button>
-
-                                <button class="booking__day">
-                                    2
-                                </button>
-
-                                <button class="booking__day">
-                                    3
-                                </button>
-
-                                <button class="booking__day">
-                                    4
-                                </button>
-
-                                <button class="booking__day">
-                                    5
-                                </button>
-
-                                <button class="booking__day">
-                                    6
-                                </button>
-
-                                <button class="booking__day">
-                                    7
-                                </button>
-
-                                <button class="booking__day">
-                                    8
-                                </button>
-
-                                <button class="booking__day">
-                                    9
-                                </button>
-
-                                <button class="booking__day">
-                                    10
-                                </button>
-
-                                <button class="booking__day">
-                                    11
-                                </button>
-
-                                <button class="booking__day">
-                                    12
-                                </button>
-
-                                <button class="booking__day">
-                                    13
-                                </button>
-
-                                <button class="booking__day">
-                                    14
-                                </button>
-
-                                <button class="booking__day">
-                                    15
-                                </button>
-
-                                <button class="booking__day">
-                                    16
-                                </button>
-
-                                <button class="booking__day">
-                                    17
-                                </button>
-
-                                <button class="booking__day">
-                                    18
-                                </button>
-
-                                <button class="booking__day">
-                                    19
-                                </button>
-
-                                <button class="booking__day">
-                                    20
-                                </button>
-
-                                <button class="booking__day">
-                                    21
-                                </button>
-
-                                <button class="booking__day">
-                                    22
-                                </button>
-
-                                <button class="booking__day">
-                                    23
-                                </button>
-
-                                <button class="booking__day">
-                                    24
-                                </button>
-
-                                <button class="booking__day">
-                                    25
-                                </button>
-
-                                <button class="booking__day">
-                                    26
-                                </button>
-
-                                <button class="booking__day booking__day--active">
-                                    27
-                                </button>
-
-                                <button class="booking__day">
-                                    28
-                                </button>
-
-                                <button class="booking__day">
-                                    29
-                                </button>
-
-                                <button class="booking__day">
-                                    30
-                                </button>
-
-                                <button class="booking__day">
-                                    31
-                                </button>
-
-                            </div>
+                            
 
                             <!-- INFOS -->
 
@@ -415,6 +271,20 @@
                         </div>
 
                     </div>
+                    <div class="booking__days">
+
+<?php foreach ($dates as $date): ?>
+
+    <button
+        class="booking__day"
+        data-date="<?= $date ?>"
+    >
+        <?= date('j', strtotime($date)) ?>
+    </button>
+
+<?php endforeach; ?>
+
+</div>
 
                     <!-- SLOTS -->
 
