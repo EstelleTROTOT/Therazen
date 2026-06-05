@@ -1172,15 +1172,6 @@ h3 {
 }
 
 
-
-
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 img {
     display: block;
     max-width: 100%;
@@ -2556,26 +2547,15 @@ h3 {
     padding: 28px;
 }
 
-.booking__month {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 26px;
-}
-
-.booking__month button {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: white;
-    border: 1px solid #ece5db;
-}
-
 .booking__weekdays,
 .booking__days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 12px;
+}
+
+.booking__weekdays {
+    margin-bottom: 12px;
 }
 
 .booking__weekdays span {
@@ -2584,18 +2564,25 @@ h3 {
     color: #7a7a7a;
 }
 
+.booking__day,
+.booking__day--empty {
+    height: 64px;
+}
+
 .booking__day {
-    aspect-ratio: 1;
-    height:64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 20px;
     border: 1px solid #ece5db;
     background: white;
     font-weight: 500;
     transition: 0.3s ease;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+}
+
+.booking__day--empty {
+    visibility: hidden;
 }
 
 .booking__day:hover {
@@ -2609,6 +2596,7 @@ h3 {
     box-shadow: 0 10px 22px rgba(69, 101, 86, 0.28);
     transform: translateY(-2px);
 }
+
 
 .booking__infos {
     margin-top: 20px;
@@ -2702,10 +2690,7 @@ h3 {
         gap: 20px;
     }
 
-    .booking__weekdays,
-    .booking__days {
-        gap: 6px;
-    }
+    
 
     .booking__slots-top {
         flex-direction: column;
@@ -2857,4 +2842,10 @@ h3 {
     .booking__form-card h2 {
         font-size: 1.8rem;
     }
+}
+.booking__month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
 }

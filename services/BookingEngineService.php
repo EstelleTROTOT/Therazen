@@ -4,17 +4,23 @@ require_once __DIR__ . '/../models/Appointment.php';
 
 class BookingEngineService
 {
-    private $appointmentModel;
+    private Appointment $appointmentModel;
 
-    private $openingHour = '08:00';
-    private $lastSlot = '18:00';
+    private string $openingHour = '08:00';
+    private string $closingHour = '20:00';
+
+    private int $visioDuration = 60;
+    private int $visioBuffer = 7;
+
+    private int $homeDuration = 60;
+    private int $homeBuffer = 20;
 
     public function __construct()
     {
         $this->appointmentModel = new Appointment();
     }
 
-    public function getAvailableSlots($date, $consultationType)
+    public function getAvailableSlots(string $date, string $consultationType): array
     {
         $dayOfWeek = date('N', strtotime($date));
 
@@ -23,21 +29,69 @@ class BookingEngineService
             return [];
         }
 
+        $appointments = $this->appointmentModel->getAppointmentsByDate($date);
+
         $slots = [];
 
         $current = strtotime($date . ' ' . $this->openingHour);
-        $end = strtotime($date . ' ' . $this->lastSlot);
+        $end = strtotime($date . ' ' . $this->closingHour);
 
-        while ($current <= $end) {
+        while ($current < $end) {
 
-            $slots[] = date('H:i', $current);
+            if ($this->isSlotAvailable(
+                $current,
+                $appointments,
+                $consultationType
+            )) {
+                $slots[] = date('H:i', $current);
+            }
 
             $current = strtotime('+1 hour', $current);
         }
 
-     
-// Réservation impossible moins d'1h avant
+        return $slots;
+    }
 
-        return array_values($slots);
+    private function isSlotAvailable(
+    int $slotTimestamp,
+    array $appointments,
+    string $consultationType
+): bool {
+
+    $duration = $this->getConsultationDuration($consultationType);
+
+    $slotStart = $slotTimestamp;
+    $slotEnd = $slotStart + ($duration * 60);
+
+    foreach ($appointments as $appointment) {
+
+        $appointmentStart = strtotime(
+            $appointment['appointment_start']
+        );
+
+        $appointmentEnd = strtotime(
+            $appointment['appointment_end']
+        );
+
+        if (
+            $slotStart < $appointmentEnd &&
+            $slotEnd > $appointmentStart
+        ) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+    private function getConsultationDuration(
+        string $consultationType
+    ): int {
+
+        if ($consultationType === 'domicile') {
+            return $this->homeDuration + $this->homeBuffer;
+        }
+
+        return $this->visioDuration + $this->visioBuffer;
     }
 }
