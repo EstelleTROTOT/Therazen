@@ -46,23 +46,39 @@ $firstWeekDay = date('N', $firstDayOfMonth);
 
 $dates = [];
 
-// Cases vides avant le 1er du mois
+// Conversion vers une semaine de 5 jours (Lun → Ven)
 
-for ($i = 1; $i < $firstWeekDay; $i++) {
+$emptyDays = min($firstWeekDay - 1, 4);
+
+for ($i = 0; $i < $emptyDays; $i++) {
     $dates[] = null;
 }
 
-// Jours du mois
+$minBookingDate = date('Y-m-d', strtotime('+1 day'));
 
 for ($day = 1; $day <= $daysInMonth; $day++) {
-    $dates[] = sprintf(
+
+    $date = sprintf(
         '%04d-%02d-%02d',
         $currentYear,
         $currentMonth,
         $day
     );
+
+    if ($date < $minBookingDate) {
+        
+        continue;
+    }
+
+    $weekDay = date('N', strtotime($date));
+// 6 = samedi
+// 7 = dimanche
+if ($weekDay >= 6) {
+    continue;
 }
 
+$dates[] = $date;
+}
         require_once __DIR__ . '/../views/booking.php';
     }
 

@@ -2550,7 +2550,7 @@ h3 {
 .booking__weekdays,
 .booking__days {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 12px;
 }
 
@@ -2698,7 +2698,18 @@ h3 {
         gap: 18px;
     }
 }
+@media (max-width: 768px) {
 
+    .booking__weekdays,
+    .booking__days {
+        gap: 8px;
+    }
+
+    .booking__day,
+    .booking__day--empty {
+        height: 52px;
+    }
+}
 .booking__hour--active {
     background: #456556;
     color: white;

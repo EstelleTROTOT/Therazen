@@ -5,15 +5,17 @@ window.onload = function () {
     const bookingDays = document.querySelectorAll(".booking__day");
 
     bookingDays.forEach(day => {
+
         day.addEventListener("click", function () {
 
-            bookingDays.forEach(item => item.classList.remove("booking__day--active"));
+            const date = this.dataset.date;
+            const type = this.dataset.type;
 
-            this.classList.add("booking__day--active");
-
-            console.log("Jour sélectionné :", this.textContent);
+            window.location.href =
+                `?page=booking&date=${date}&type=${type}`;
 
         });
+
     });
 
     // Menu burger
@@ -43,15 +45,19 @@ window.onload = function () {
     const bookingHours = document.querySelectorAll(".booking__hour");
 
     bookingHours.forEach(hour => {
+
         hour.addEventListener("click", function () {
 
-            bookingHours.forEach(item => item.classList.remove("booking__hour--active"));
+            bookingHours.forEach(item =>
+                item.classList.remove("booking__hour--active")
+            );
 
             this.classList.add("booking__hour--active");
 
             console.log("Créneau sélectionné :", this.textContent);
 
         });
+
     });
 
     // Sélection du type de consultation
@@ -59,29 +65,34 @@ window.onload = function () {
     const consultationTypes = document.querySelectorAll(".booking__type");
 
     consultationTypes.forEach(type => {
+
         type.addEventListener("click", function () {
 
-            consultationTypes.forEach(item => item.classList.remove("booking__type--active"));
+            const selectedType = this.dataset.type;
 
-            this.classList.add("booking__type--active");
+            const url = new URL(window.location.href);
 
-            console.log(this.dataset.type);
+            url.searchParams.set("page", "booking");
+            url.searchParams.set("type", selectedType);
+
+            window.location.href = url.toString();
 
         });
+
     });
 
     // Bouton Continuer → étape informations patient
 
     const continueBtn = document.querySelector(".booking__continue");
 
-if (continueBtn) {
+    if (continueBtn) {
 
-    continueBtn.addEventListener("click", function () {
+        continueBtn.addEventListener("click", function () {
 
-        window.location.href = "?page=booking-informations";
+            window.location.href = "?page=booking-informations";
 
-    });
+        });
 
-}
+    }
 
 };

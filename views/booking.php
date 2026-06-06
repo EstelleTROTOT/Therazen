@@ -227,9 +227,7 @@ $days = [
             <span>Mer</span>
             <span>Jeu</span>
             <span>Ven</span>
-            <span>Sam</span>
-            <span>Dim</span>
-
+        
         </div>
 
         <!-- DAYS -->
