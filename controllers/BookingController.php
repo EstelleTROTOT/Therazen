@@ -82,8 +82,13 @@ $dates[] = $date;
         require_once __DIR__ . '/../views/booking.php';
     }
 
-    public function informations()
-    {
-        require_once __DIR__ . '/../views/booking-informations.php';
-    }
+  public function informations()
+{
+    $selectedDate = $_GET['date'] ?? '';
+    $selectedType = $_GET['type'] ?? '';
+    $slot = $_GET['slot'] ?? '';
+
+    require_once __DIR__ . '/../views/booking-informations.php';
+}
+
 }

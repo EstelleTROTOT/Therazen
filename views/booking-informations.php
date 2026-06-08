@@ -1,3 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheraZen</title>
+
+    <link rel="stylesheet" href="/TheraZen/css/style.css?v=999">
+</head>
+
+<body>
+    <div class="container booking-page">
+<?php
+
+$date = $_GET['date'] ?? '';
+$type = $_GET['type'] ?? '';
+$slot = $_GET['slot'] ?? '';
+
+$months = [
+    1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril',
+    5 => 'Mai', 6 => 'Juin', 7 => 'Juillet', 8 => 'Août',
+    9 => 'Septembre', 10 => 'Octobre', 11 => 'Novembre', 12 => 'Décembre'
+];
+
+$days = [
+    'Monday' => 'Lundi',
+    'Tuesday' => 'Mardi',
+    'Wednesday' => 'Mercredi',
+    'Thursday' => 'Jeudi',
+    'Friday' => 'Vendredi',
+    'Saturday' => 'Samedi',
+    'Sunday' => 'Dimanche'
+];
+
+$formattedDate = '';
+
+if (!empty($date)) {
+    $formattedDate =
+        $days[date('l', strtotime($date))] . ' ' .
+        date('d', strtotime($date)) . ' ' .
+        $months[(int) date('n', strtotime($date))] . ' ' .
+        date('Y', strtotime($date));
+}
+
+$consultationLabel =
+    $type === 'consultation_domicile'
+        ? 'Consultation à domicile'
+        : 'Consultation vidéo';
+
+?>
+
 <div class="booking__steps">
 
     <div class="booking__step booking__step--done">
@@ -21,6 +73,27 @@
     </div>
 
 </div>
+<div class="booking__information-layout">
+<div class="booking__summary-card">
+
+    <h3>Récapitulatif du rendez-vous</h3>
+
+    <div class="booking__summary-item">
+        <strong>Consultation :</strong>
+        <span><?= htmlspecialchars($consultationLabel) ?></span>
+    </div>
+
+    <div class="booking__summary-item">
+        <strong>Date :</strong>
+        <span><?= htmlspecialchars($formattedDate) ?></span>
+    </div>
+
+    <div class="booking__summary-item">
+        <strong>Créneau :</strong>
+        <span><?= htmlspecialchars($slot) ?></span>
+    </div>
+
+</div>
 
 <div class="booking__form-card">
 
@@ -30,7 +103,11 @@
         Merci de compléter les informations suivantes afin de confirmer votre rendez-vous.
     </p>
 
-    <form class="booking-form">
+    <form class="booking-form" method="post">
+
+        <input type="hidden" name="appointment_date" value="<?= htmlspecialchars($date) ?>">
+        <input type="hidden" name="appointment_type" value="<?= htmlspecialchars($type) ?>">
+        <input type="hidden" name="appointment_slot" value="<?= htmlspecialchars($slot) ?>">
 
         <div class="booking-form__group">
             <label>Nom *</label>
@@ -58,40 +135,46 @@
         </div>
 
         <div class="booking-form__group">
-    <label>Motif de consultation *</label>
-    <textarea name="reason" rows="5" placeholder="Vous pouvez décrire brièvement votre demande ou les raisons qui vous amènent à consulter."></textarea>
-</div>
+            <label>Motif de consultation *</label>
+            <textarea name="reason" rows="5" placeholder="Vous pouvez décrire brièvement votre demande ou les raisons qui vous amènent à consulter."></textarea>
+        </div>
 
-<div class="booking-form__account">
-    <input type="checkbox" id="create-account">
-    <label for="create-account">Créer un compte TheraZen (facultatif)</label>
-</div>
-
-<p class="booking-form__info">
-    Créer un compte vous permettra de retrouver vos rendez-vous, consulter votre historique et gérer facilement vos futures réservations.
-</p>
-
-<p class="booking-form__info">
-    Si vous préférez ne pas créer de compte, vous recevrez toutes les informations relatives à votre rendez-vous par email.
-</p>
+        <div class="booking-form__account">
+            <input type="checkbox" id="create-account">
+            <label for="create-account">Créer un compte TheraZen (facultatif)</label>
+        </div>
 
         <p class="booking-form__info">
-            Si vous ne créez pas de compte, vous recevrez toutes les informations relatives à votre rendez-vous par email.
+            Créer un compte vous permettra de retrouver vos rendez-vous, consulter votre historique et gérer facilement vos futures réservations.
         </p>
 
         <div class="booking-form__passwords">
 
-            <div class="booking-form__group">
-                <label>Mot de passe</label>
-                <input type="password" name="password">
-            </div>
+    <div class="booking-form__group">
+        <label>Mot de passe</label>
+        <input type="password" name="password" id="password">
+    </div>
 
-            <div class="booking-form__group">
-                <label>Confirmation du mot de passe</label>
-                <input type="password" name="password_confirmation">
-            </div>
+    <div class="booking-form__group">
+        <label>Confirmation du mot de passe</label>
+        <input type="password" name="password_confirmation" id="password_confirmation">
+    </div>
 
-        </div>
+</div>
+
+<div class="booking-form__options">
+
+    <label class="booking-form__checkbox">
+        <input type="checkbox" id="show-passwords">
+        Afficher les mots de passe
+    </label>
+
+    <label class="booking-form__checkbox">
+        <input type="checkbox" id="remember-me">
+        Se souvenir de moi
+    </label>
+
+</div>
 
         <button type="submit" class="btn btn--primary">
             Continuer vers le paiement sécurisé →
@@ -100,3 +183,10 @@
     </form>
 
 </div>
+</div>
+</div>
+<script src="/TheraZen/script.js?v=999"></script>
+
+</body>
+</html>
+```

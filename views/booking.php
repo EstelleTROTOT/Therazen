@@ -1,3 +1,12 @@
+
+<?php
+
+/** @var string $selectedDate */
+/** @var string $selectedType */
+/** @var array $dates */
+/** @var array $slots */
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -8,7 +17,7 @@
 
     <title>Thera Zen - Réservation</title>
 
-    <link rel="stylesheet" href="../css/style.css?v=1">
+    <link rel="stylesheet" href="/THERAZEN/css/style.css?v=1">
 
 </head>
 
@@ -34,12 +43,10 @@
             </ul>
 
             <button class="navbar__burger">☰</button>
-
-            <div class="navbar__actions">
-                <button class="btn btn--secondary">Se connecter</button>
-                <a href="?page=booking" class="btn btn--primary">Prendre rendez-vous</a>
-            </div>
-
+<div class="navbar__actions">
+    <button class="btn btn--secondary">Se connecter</button>
+    <a href="?page=booking" class="btn btn--primary">Prendre rendez-vous</a>
+</div>
         </nav>
 
         <div class="mobile-menu">
@@ -134,7 +141,7 @@
                         </aside>
 
             <!-- CONTENT -->
-             <?php
+            <?php
 
 $months = [
     1 => 'Janvier',

@@ -1,5 +1,6 @@
 window.onload = function () {
 
+
     // Sélection du jour
 
     const bookingDays = document.querySelectorAll(".booking__day");
@@ -43,6 +44,9 @@ window.onload = function () {
     // Sélection du créneau horaire
 
     const bookingHours = document.querySelectorAll(".booking__hour");
+    const continueBtn = document.querySelector(".booking__continue");
+
+    let selectedSlot = null;
 
     bookingHours.forEach(hour => {
 
@@ -54,7 +58,11 @@ window.onload = function () {
 
             this.classList.add("booking__hour--active");
 
-            console.log("Créneau sélectionné :", this.textContent);
+            selectedSlot = this.textContent.trim();
+
+            if (continueBtn) {
+                continueBtn.disabled = false;
+            }
 
         });
 
@@ -83,16 +91,44 @@ window.onload = function () {
 
     // Bouton Continuer → étape informations patient
 
-    const continueBtn = document.querySelector(".booking__continue");
-
     if (continueBtn) {
 
         continueBtn.addEventListener("click", function () {
 
-            window.location.href = "?page=booking-informations";
+            if (!selectedSlot) {
+                return;
+            }
+
+            const url = new URL(window.location.href);
+
+            const date = url.searchParams.get("date");
+            const type = url.searchParams.get("type");
+
+            window.location.href =
+                `?page=booking-informations&date=${date}&type=${type}&slot=${encodeURIComponent(selectedSlot)}`;
 
         });
 
     }
 
 };
+
+//passeword
+
+const showPasswords = document.getElementById('show-passwords');
+
+if (showPasswords) {
+
+    showPasswords.addEventListener('change', () => {
+
+        const password = document.getElementById('password');
+        const confirmation = document.getElementById('password_confirmation');
+
+        const type = showPasswords.checked ? 'text' : 'password';
+
+        password.type = type;
+        confirmation.type = type;
+
+    });
+
+}
