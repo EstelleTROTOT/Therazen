@@ -438,7 +438,7 @@ h1, h2, h3 {
 
 /* ICONES CAMERA / MAISON */
 .consultation-card__content > img {
-    width: 54px;   /* plus grand */
+    width: 54px;
     height: 54px;
     object-fit: contain;
     margin-bottom: 14px;
@@ -1285,8 +1285,8 @@ h1, h2, h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 900px;
-    margin: 0 auto 50px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
     position: relative;
 }
 
@@ -1324,7 +1324,7 @@ h1, h2, h3 {
 .booking__calendar h2,
 .booking__slots h2 {
     font-size: 2rem;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     color: #173f36;
 }
 
@@ -1401,7 +1401,7 @@ h1, h2, h3 {
 .booking__slots-card {
     background: #f5efe6;
     border-radius: 24px;
-    padding: 38px;
+    padding: 35px;
 }
 
 .booking__slots-top {
@@ -1409,6 +1409,7 @@ h1, h2, h3 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 28px;
+    max-width: 100%;
 }
 
 .booking__slots-tags {
@@ -1529,10 +1530,7 @@ h1, h2, h3 {
     margin: 40px auto;
     padding: 0 20px;
 }
-.booking__steps {
-    max-width: 1100px;
-    margin: 0 auto 40px;
-}
+
 .booking__form-card h2 {
     font-size: 2.3rem;
     color: #173f36;
@@ -1750,6 +1748,70 @@ h1, h2, h3 {
 
     .booking__form-card {
         padding: 18px;
+    }
+
+}
+
+/*BLOC CONSULTATION A DOMICILE*/
+
+/* CONSULTATION A DOMICILE */
+
+.booking__domicile-form {
+    margin-top: 25px;
+}
+
+.booking__domicile-input {
+    width: 100%;
+    max-width: 700px;
+    height: 56px;
+    padding: 0 20px;
+    border: 1px solid #d8d0c5;
+    border-radius: 12px;
+    background: #ffffff;
+    font-size: 15px;
+    font-family: inherit;
+    margin-top: 20px;
+    box-sizing: border-box;
+    transition: all .25s ease;
+}
+.booking__domicile-input:focus {
+    outline: none;
+    border-color: #456556;
+    box-shadow: 0 0 0 4px rgba(69,101,86,.12);
+}
+.booking__domicile-input::placeholder {
+    color: #8a8a8a;
+}
+
+.booking__domicile-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.booking__domicile-button {
+    width: 320px;
+    max-width: 100%;
+}
+@media (max-width: 768px) {
+
+    .booking__domicile-button {
+        width: 100%;
+    }
+
+    .booking__domicile-input {
+        height: 52px;
+    }
+
+}
+@media (max-width: 992px) {
+
+    .booking__information-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .booking__summary-card {
+        position: static;
     }
 
 }

@@ -129,7 +129,11 @@
 
                     </div>
 
-                </div>
+                                </div>
+
+             
+
+
 
                 <!-- SECURITY -->
 
@@ -206,8 +210,44 @@ $days = [
         <span>💳 40€</span>
     </div>
 
+    <?php if ($selectedType === 'consultation_domicile'): ?>
+
+<div class="booking__slots-card">
+
+    <h2>🏠 Consultation à domicile</h2>
+
+    <p>
+        Veuillez saisir votre adresse afin que nous puissions calculer
+        les disponibilités adaptées à votre secteur ainsi que les éventuels
+        frais de déplacement.
+    </p>
+
+    <div class="booking__domicile-form">
+
+    <input
+    type="text"
+    class="booking__domicile-input"
+    style="width:100%;height:56px;padding:0 20px;border:2px solid red;border-radius:12px;"
+    placeholder="Saisissez votre adresse">
+
+<div class="booking__domicile-actions">
+
+    <button
+        type="button"
+        class="btn btn--primary booking__domicile-button">
+        Calculer mes disponibilités
+    </button>
+
+</div>
+</div>
+
+</div>
+
+<?php endif; ?>
     <!-- CALENDAR -->
 
+
+<?php if ($selectedType === 'consultation_video'): ?>
 
 <div class="booking__calendar">
 
@@ -262,8 +302,12 @@ $days = [
     </div>
 
 </div>
-    
+
+<?php endif; ?>
+
 <!-- SLOTS -->
+
+<?php if ($selectedType === 'consultation_video'): ?>
 
 <div class="booking__slots">
 
@@ -295,7 +339,11 @@ $days = [
 
 </div>
 
+<?php endif; ?>
+
 <!-- NOTICE -->
+
+<?php if ($selectedType === 'consultation_video'): ?>
 
 <p class="booking__notice">
     ℹ️ Le premier créneau disponible tient compte de vos rendez-vous existants, du temps de trajet et du temps de préparation.
@@ -304,6 +352,8 @@ $days = [
 <div class="booking__actions">
     <button class="btn btn--primary booking__continue">Continuer</button>
 </div>
+
+<?php endif; ?>
 
 </div> <!-- booking__content -->
 </div> <!-- booking__wrapper -->

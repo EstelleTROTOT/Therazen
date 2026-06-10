@@ -25,14 +25,20 @@ class BookingController
         // Date sélectionnée
         $selectedDate = $_GET['date'] ?? date('Y-m-d');
 
-        // Type sélectionné
-        $selectedType = $_GET['type'] ?? 'consultation_video';
+      // Type sélectionné
+$selectedType = $_GET['type'] ?? '';
 
-        // Créneaux disponibles
-        $slots = $bookingEngine->getAvailableSlots(
-            $selectedDate,
-            $selectedType
-        );
+// Créneaux disponibles
+$slots = [];
+
+if (!empty($selectedType)) {
+
+    $slots = $bookingEngine->getAvailableSlots(
+        $selectedDate,
+        $selectedType
+    );
+
+}
 
         // Calendrier mensuel
 
