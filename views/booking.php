@@ -1,4 +1,3 @@
-
 <?php
 
 /** @var string $selectedDate */
@@ -225,10 +224,11 @@ $days = [
     <div class="booking__domicile-form">
 
     <input
-    type="text"
-    class="booking__domicile-input"
-    style="width:100%;height:56px;padding:0 20px;border:2px solid red;border-radius:12px;"
-    placeholder="Saisissez votre adresse">
+        type="text"
+        class="booking__domicile-input"
+        placeholder="Ex : 100 Rue du Buyat, 01800 Saint-Jean-de-Niost">
+
+</div>
 
 <div class="booking__domicile-actions">
 
@@ -238,7 +238,6 @@ $days = [
         Calculer mes disponibilités
     </button>
 
-</div>
 </div>
 
 </div>
@@ -307,6 +306,8 @@ $days = [
 
 <!-- SLOTS -->
 
+
+
 <?php if ($selectedType === 'consultation_video'): ?>
 
 <div class="booking__slots">
@@ -318,12 +319,14 @@ $days = [
         <div class="booking__slots-top">
 
             <strong>
-    <?= $days[date('l', strtotime($selectedDate))] . ' ' . date('d', strtotime($selectedDate)) . ' ' . $months[(int) date('n', strtotime($selectedDate))] . ' ' . date('Y', strtotime($selectedDate)) ?>
-</strong>
+                <?= $days[date('l', strtotime($selectedDate))] . ' ' . date('d', strtotime($selectedDate)) . ' ' . $months[(int) date('n', strtotime($selectedDate))] . ' ' . date('Y', strtotime($selectedDate)) ?>
+            </strong>
 
             <div class="booking__slots-tags">
-    <div class="booking__tag"><?= $selectedType === 'consultation_domicile' ? 'Consultation à domicile' : 'Consultation vidéo' ?></div>
-</div>
+                <div class="booking__tag">
+                    <?= $selectedType === 'consultation_domicile' ? 'Consultation à domicile' : 'Consultation vidéo' ?>
+                </div>
+            </div>
 
         </div>
 

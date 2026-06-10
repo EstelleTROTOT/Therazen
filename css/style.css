@@ -1760,27 +1760,28 @@ h1, h2, h3 {
     margin-top: 25px;
 }
 
+
 .booking__domicile-input {
     width: 100%;
-    max-width: 700px;
     height: 56px;
     padding: 0 20px;
-    border: 1px solid #d8d0c5;
+    border: 2px solid red;
     border-radius: 12px;
     background: #ffffff;
     font-size: 15px;
     font-family: inherit;
-    margin-top: 20px;
     box-sizing: border-box;
     transition: all .25s ease;
 }
+
 .booking__domicile-input:focus {
     outline: none;
     border-color: #456556;
     box-shadow: 0 0 0 4px rgba(69,101,86,.12);
 }
+
 .booking__domicile-input::placeholder {
-    color: #8a8a8a;
+    color: #9a9a9a;
 }
 
 .booking__domicile-actions {
