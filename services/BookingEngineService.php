@@ -52,11 +52,24 @@ class BookingEngineService
         return $slots;
     }
 
-    private function isSlotAvailable(
+   private function isSlotAvailable(
     int $slotTimestamp,
     array $appointments,
     string $consultationType
 ): bool {
+
+    // Interdiction de réserver moins d'1 heure à l'avance
+    $today = date('Y-m-d');
+
+    if (date('Y-m-d', $slotTimestamp) === $today) {
+        
+
+        $minimumAllowedTime = strtotime('+1 hour');
+
+        if ($slotTimestamp <= $minimumAllowedTime) {
+            return false;
+        }
+    }
 
     $duration = $this->getConsultationDuration($consultationType);
 
@@ -88,7 +101,7 @@ class BookingEngineService
         string $consultationType
     ): int {
 
-        if ($consultationType === 'domicile') {
+        if ($consultationType === 'consultation_domicile') {
             return $this->homeDuration + $this->homeBuffer;
         }
 

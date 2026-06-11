@@ -298,7 +298,7 @@
 
             <div class="footer__brand">
                 <h2>Thera Zen</h2>
-                <p>Votre bien-être mental est notre priorité.</p>
+                <p>Votre bien-être mental est ma priorité.</p>
             </div>
 
             <div class="footer__line"></div>

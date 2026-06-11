@@ -42,25 +42,48 @@ if (!empty($selectedType)) {
 
         // Calendrier mensuel
 
+
 $currentMonth = (int)($_GET['month'] ?? date('n', strtotime($selectedDate)));
 $currentYear = (int)($_GET['year'] ?? date('Y', strtotime($selectedDate)));
 
 $firstDayOfMonth = strtotime("$currentYear-$currentMonth-01");
 
 $daysInMonth = date('t', $firstDayOfMonth);
-$firstWeekDay = date('N', $firstDayOfMonth);
 
 $dates = [];
 
-// Conversion vers une semaine de 5 jours (Lun → Ven)
+// Aujourd'hui est autorisé
+$minBookingDate = date('Y-m-d');
 
-$emptyDays = min($firstWeekDay - 1, 4);
+// Recherche du premier jour ouvré affiché
+$firstDisplayedWeekDay = null;
+
+for ($day = 1; $day <= $daysInMonth; $day++) {
+
+    $testDate = sprintf(
+        '%04d-%02d-%02d',
+        $currentYear,
+        $currentMonth,
+        $day
+    );
+
+    if ($testDate < $minBookingDate) {
+        continue;
+    }
+
+    $weekDay = date('N', strtotime($testDate));
+
+    if ($weekDay <= 5) {
+        $firstDisplayedWeekDay = $weekDay;
+        break;
+    }
+}
+
+$emptyDays = ($firstDisplayedWeekDay ?? 1) - 1;
 
 for ($i = 0; $i < $emptyDays; $i++) {
     $dates[] = null;
 }
-
-$minBookingDate = date('Y-m-d', strtotime('+1 day'));
 
 for ($day = 1; $day <= $daysInMonth; $day++) {
 
@@ -71,24 +94,25 @@ for ($day = 1; $day <= $daysInMonth; $day++) {
         $day
     );
 
+    // Cache uniquement les jours passés
     if ($date < $minBookingDate) {
-        
         continue;
     }
 
     $weekDay = date('N', strtotime($date));
-// 6 = samedi
-// 7 = dimanche
-if ($weekDay >= 6) {
-    continue;
-}
 
-$dates[] = $date;
-}
-        require_once __DIR__ . '/../views/booking.php';
+    // Samedi et dimanche fermés
+    if ($weekDay >= 6) {
+        continue;
     }
 
-  public function informations()
+    $dates[] = $date;
+}
+
+require_once __DIR__ . '/../views/booking.php';
+}
+
+public function informations()
 {
     $selectedDate = $_GET['date'] ?? '';
     $selectedType = $_GET['type'] ?? '';

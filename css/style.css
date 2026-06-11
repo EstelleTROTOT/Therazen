@@ -1816,3 +1816,38 @@ h1, h2, h3 {
     }
 
 }
+
+.booking__empty-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 420px;
+
+    background: #ffffff;
+    border: 1px solid #e6ddd2;
+    border-radius: 24px;
+
+    padding: 50px;
+    margin-top: 25px;
+
+    text-align: center;
+}
+
+.booking__empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.booking__empty-state h3 {
+    margin-bottom: 15px;
+    color: #486754;
+    font-size: 1.8rem;
+}
+
+.booking__empty-state p {
+    max-width: 650px;
+    line-height: 1.8;
+    color: #666;
+    font-size: 1rem;
+}

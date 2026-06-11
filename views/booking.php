@@ -16,7 +16,7 @@
 
     <title>Thera Zen - Réservation</title>
 
-    <link rel="stylesheet" href="/THERAZEN/css/style.css?v=1">
+    <link rel="stylesheet" href="/THERAZEN/css/style.css?v=999">
 
 </head>
 
@@ -130,7 +130,7 @@
 
                                 </div>
 
-             
+            
 
 
 
@@ -204,14 +204,28 @@ $days = [
     <!-- INFOS -->
 
     <div class="booking__infos">
+    
         <span>⏰ Europe/Paris (GMT+2)</span>
         <span>🎥 60 minutes</span>
         <span>💳 40€</span>
     </div>
-
+<?php if (!$selectedType): ?>
+<div class="booking__empty-state">
+    <div class="booking__empty-icon">📅</div>
+    <h3>Sélectionnez votre type de consultation</h3>
+    <p>
+        Afin d'avoir accès aux disponibilités, merci de sélectionner sur votre gauche
+        le type de consultation souhaité :
+        <strong>Consultation vidéo</strong> ou
+        <strong>Consultation à domicile</strong>.
+    </p>
+</div>
+<?php endif; ?>
     <?php if ($selectedType === 'consultation_domicile'): ?>
+        
 
 <div class="booking__slots-card">
+    
 
     <h2>🏠 Consultation à domicile</h2>
 
