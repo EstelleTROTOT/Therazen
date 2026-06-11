@@ -69,7 +69,7 @@ $consultationLabel =
 
     <div class="booking__step">
         <div class="booking__step-number">4</div>
-        <p>Paiement sécurisé</p>
+        <p>Confirmation</p>
     </div>
 
 </div>
@@ -103,11 +103,12 @@ $consultationLabel =
         Merci de compléter les informations suivantes afin de confirmer votre rendez-vous.
     </p>
 
-    <form class="booking-form" method="post">
+    <form class="booking-form" method="post" action="?page=booking-informations">
 
         <input type="hidden" name="appointment_date" value="<?= htmlspecialchars($date) ?>">
         <input type="hidden" name="appointment_type" value="<?= htmlspecialchars($type) ?>">
         <input type="hidden" name="appointment_slot" value="<?= htmlspecialchars($slot) ?>">
+        <input type="hidden" name="booking_submit" value="1">
 
         <div class="booking-form__group">
             <label>Nom *</label>
@@ -177,7 +178,7 @@ $consultationLabel =
 </div>
 
         <button type="submit" class="btn btn--primary">
-            Continuer vers le paiement sécurisé →
+            Continuer vers la confirmation →
         </button>
 
     </form>

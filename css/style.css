@@ -1851,3 +1851,21 @@ h1, h2, h3 {
     color: #666;
     font-size: 1rem;
 }
+
+/* BOUTON CONTINUER DÉSACTIVÉ */
+
+.booking__continue:disabled {
+    background: #9aa8a1 !important;
+    color: #ffffff !important;
+    opacity: .6;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.booking__continue:disabled:hover {
+    background: #9aa8a1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}

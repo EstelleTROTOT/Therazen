@@ -63,4 +63,52 @@ class Appointment
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function createAppointment(
+    int $patientId,
+    string $consultationType,
+    string $motif,
+    ?string $address,
+    ?string $postalCode,
+    ?string $city,
+    string $appointmentStart,
+    string $appointmentEnd
+): bool {
+
+    $sql = "INSERT INTO appointments (
+        patient_id,
+        consultation_type,
+        motif,
+        address,
+        postal_code,
+        city,
+        appointment_start,
+        appointment_end,
+        appointment_status,
+        payment_status
+    ) VALUES (
+        :patient_id,
+        :consultation_type,
+        :motif,
+        :address,
+        :postal_code,
+        :city,
+        :appointment_start,
+        :appointment_end,
+        'scheduled',
+        'pending'
+    )";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+        ':patient_id' => $patientId,
+        ':consultation_type' => $consultationType,
+        ':motif' => $motif,
+        ':address' => $address,
+        ':postal_code' => $postalCode,
+        ':city' => $city,
+        ':appointment_start' => $appointmentStart,
+        ':appointment_end' => $appointmentEnd
+    ]);
+}
 }

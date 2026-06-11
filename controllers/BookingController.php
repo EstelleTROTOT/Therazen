@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../services/BookingEngineService.php';
+require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../models/Appointment.php';
 
 class BookingController
 {
@@ -114,11 +116,89 @@ require_once __DIR__ . '/../views/booking.php';
 
 public function informations()
 {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking_submit'])) {
+
+        $_SESSION['booking'] = [
+            'date' => $_POST['appointment_date'],
+            'type' => $_POST['appointment_type'],
+            'slot' => $_POST['appointment_slot'],
+
+            'lastname' => trim($_POST['lastname']),
+            'firstname' => trim($_POST['firstname']),
+            'birthdate' => $_POST['birthdate'],
+            'phone' => trim($_POST['phone']),
+            'email' => trim($_POST['email']),
+            'reason' => trim($_POST['reason']),
+            'password' => $_POST['password'] ?? ''
+        ];
+
+        require_once __DIR__ . '/../views/booking-confirmation.php';
+        return;
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
+
+        $booking = $_SESSION['booking'];
+
+        $userModel = new User();
+
+        $user = $userModel->findByEmail($booking['email']);
+
+        if (!$user) {
+
+            $password = !empty($booking['password'])
+                ? $booking['password']
+                : bin2hex(random_bytes(8));
+
+            $userModel->create(
+                $booking['firstname'],
+                $booking['lastname'],
+                $booking['email'],
+                $password,
+                $booking['phone']
+            );
+
+            $user = $userModel->findByEmail($booking['email']);
+        }
+
+        $patientId = $user['id'];
+
+        $appointmentModel = new Appointment();
+
+        $appointmentStart = $booking['date'] . ' ' . $booking['slot'] . ':00';
+
+        $duration = $booking['type'] === 'consultation_domicile'
+            ? 80
+            : 67;
+
+        $appointmentEnd = date(
+            'Y-m-d H:i:s',
+            strtotime($appointmentStart . " +{$duration} minutes")
+        );
+
+        $appointmentModel->createAppointment(
+            $patientId,
+            $booking['type'],
+            $booking['reason'],
+            null,
+            null,
+            null,
+            $appointmentStart,
+            $appointmentEnd
+        );
+
+    $successBooking = $booking;
+
+unset($_SESSION['booking']);
+
+require_once __DIR__ . '/../views/booking-success.php';
+return;
+    }
+
     $selectedDate = $_GET['date'] ?? '';
     $selectedType = $_GET['type'] ?? '';
     $slot = $_GET['slot'] ?? '';
 
     require_once __DIR__ . '/../views/booking-informations.php';
 }
-
 }

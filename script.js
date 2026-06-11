@@ -45,7 +45,9 @@ window.onload = function () {
 
     const bookingHours = document.querySelectorAll(".booking__hour");
     const continueBtn = document.querySelector(".booking__continue");
-
+if (continueBtn) {
+    continueBtn.disabled = true;
+}
     let selectedSlot = null;
 
     bookingHours.forEach(hour => {
@@ -96,9 +98,9 @@ window.onload = function () {
         continueBtn.addEventListener("click", function () {
 
             if (!selectedSlot) {
-                return;
-            }
-
+    alert('Veuillez sélectionner un créneau horaire.');
+    return;
+}
             const url = new URL(window.location.href);
 
             const date = url.searchParams.get("date");

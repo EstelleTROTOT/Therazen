@@ -366,9 +366,9 @@ $days = [
     ℹ️ Le premier créneau disponible tient compte de vos rendez-vous existants, du temps de trajet et du temps de préparation.
 </p>
 
-<div class="booking__actions">
-    <button class="btn btn--primary booking__continue">Continuer</button>
-</div>
+<button class="btn btn--primary booking__continue" disabled>
+    Continuer
+</button>
 
 <?php endif; ?>
 
@@ -423,7 +423,7 @@ $days = [
 
 </footer>
 
-<script src="../script.js?v=1"></script>
+<script src="../script.js?v=1000"></script>
 
 </body>
 </html>
