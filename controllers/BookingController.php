@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../services/BookingEngineService.php';
+require_once __DIR__ . '/../services/MailService.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Appointment.php';
 
@@ -176,23 +177,39 @@ public function informations()
             strtotime($appointmentStart . " +{$duration} minutes")
         );
 
-        $appointmentModel->createAppointment(
-            $patientId,
-            $booking['type'],
-            $booking['reason'],
-            null,
-            null,
-            null,
-            $appointmentStart,
-            $appointmentEnd
-        );
+        $appointment = $appointmentModel->createAppointment(
+    $patientId,
+    $booking['type'],
+    $booking['reason'],
+    null,
+    null,
+    null,
+    $appointmentStart,
+    $appointmentEnd
+);
 
-    $successBooking = $booking;
+if (
+    $booking['type'] === 'consultation_video'
+    && !empty($appointment['meeting_room_name'])
+) {
+    $booking['meeting_link'] =
+        'https://meet.jit.si/' . $appointment['meeting_room_name'];
+}
+
+$mailService = new MailService();
+$mailService->sendBookingConfirmation($booking);
+
+$_SESSION['successBooking'] = $booking;
+
+if (!empty($booking['meeting_link'])) {
+    $_SESSION['successBooking']['meeting_link']
+        = $booking['meeting_link'];
+}
 
 unset($_SESSION['booking']);
 
-require_once __DIR__ . '/../views/booking-success.php';
-return;
+header('Location: ?page=booking-success');
+exit;
     }
 
     $selectedDate = $_GET['date'] ?? '';

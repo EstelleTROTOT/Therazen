@@ -56,6 +56,10 @@ class Router
     $controller->informations();
     break;
 
+    case 'booking-success':
+    require_once __DIR__ . '/../views/booking-success.php';
+    break;
+
             default:
                 echo "Page introuvable";
                 break;

@@ -1,3 +1,11 @@
+<?php
+$successBooking = $_SESSION['successBooking'] ?? null;
+
+if (!$successBooking) {
+    header('Location: ?page=home');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -48,39 +56,41 @@
 
         <div class="booking__summary-item">
             <strong>Consultation :</strong>
-            <span><?= $successBooking['type'] === 'consultation_video'
-    ? 'Consultation vidéo'
-    : 'Consultation à domicile'; ?></span>
+            <span>
+    <?= isset($successBooking['type']) && $successBooking['type'] === 'consultation_video'
+        ? 'Consultation vidéo'
+        : 'Consultation à domicile'; ?>
+</span>
         </div>
 
         <div class="booking__summary-item">
             <strong>Date :</strong>
-            <span><?= htmlspecialchars($successBooking['date']) ?></span>
+            <span><?= htmlspecialchars($successBooking['date'] ?? '') ?></span>
         </div>
 
         <div class="booking__summary-item">
             <strong>Créneau :</strong>
-            <span><?= htmlspecialchars($successBooking['slot']) ?></span>
+            <span><?= htmlspecialchars($successBooking['slot'] ?? '') ?></span>
         </div>
 
         <div class="booking__summary-item">
             <strong>Nom :</strong>
-            <span><?= htmlspecialchars($successBooking['lastname']) ?></span>
+            <span><?= htmlspecialchars($successBooking['lastname'] ?? '') ?></span>
         </div>
 
         <div class="booking__summary-item">
             <strong>Prénom :</strong>
-            <span><?= htmlspecialchars($successBooking['firstname']) ?></span>
+            <span><?= htmlspecialchars($successBooking['firstname'] ?? '') ?></span>
         </div>
 
         <div class="booking__summary-item">
             <strong>Email :</strong>
-            <span><?= htmlspecialchars($successBooking['email']) ?></span>
+            <span><?= htmlspecialchars($successBooking['email'] ?? '') ?></span>
         </div>
 
         <div class="booking__summary-item">
             <strong>Téléphone :</strong>
-            <span><?= htmlspecialchars($successBooking['phone']) ?></span>
+            <span><?= htmlspecialchars($successBooking['phone'] ?? '') ?></span>
         </div>
 
         <div class="booking__success-message">
@@ -93,8 +103,7 @@
             </p>
 
             <p>
-                Pour les consultations vidéo, vous recevrez également le lien
-                de connexion sécurisé avant votre rendez-vous.
+                Un email de confirmation vous a été envoyé avec toutes les informations de votre rendez-vous.
             </p>
             
 
@@ -104,9 +113,42 @@
         Conservez cet email de confirmation.
     </p>
 
-    <p>
-        Pour les consultations vidéo, le lien sécurisé de connexion vous sera transmis avant votre rendez-vous.
-    </p>
+    <?php if (
+    isset($successBooking['type'])
+    && $successBooking['type'] === 'consultation_video'
+    && !empty($successBooking['meeting_link'])
+) : ?>
+
+<p>
+    Connectez-vous 5 minutes avant le début de votre séance.
+</p>
+
+<div style="margin:20px 0;">
+    <a
+        href="<?= htmlspecialchars($successBooking['meeting_link']) ?>"
+        target="_blank"
+        class="btn btn--primary"
+    >
+        Rejoindre ma consultation vidéo
+    </a>
+</div>
+
+<p>
+    En cas de retard, la séance se terminera à l'heure initialement prévue.
+</p>
+
+<p>
+    Pour toute question :
+    estelletherapies@gmail.com
+</p>
+
+<?php else : ?>
+
+<p>
+    Pour les consultations vidéo, le lien sécurisé de connexion vous sera transmis avant votre rendez-vous.
+</p>
+
+<?php endif; ?>
 
     <p>
         Si vous avez besoin de modifier ou reporter votre rendez-vous, vous pourrez le faire depuis votre espace patient.

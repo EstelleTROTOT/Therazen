@@ -72,7 +72,17 @@ class Appointment
     ?string $city,
     string $appointmentStart,
     string $appointmentEnd
-): bool {
+): array {
+
+    $meetingProvider = null;
+    $meetingRoomName = null;
+    $meetingStatus = null;
+
+    if ($consultationType === 'consultation_video') {
+        $meetingProvider = 'jitsi';
+        $meetingRoomName = 'therazen-' . bin2hex(random_bytes(6));
+        $meetingStatus = 'scheduled';
+    }
 
     $sql = "INSERT INTO appointments (
         patient_id,
@@ -84,7 +94,10 @@ class Appointment
         appointment_start,
         appointment_end,
         appointment_status,
-        payment_status
+        payment_status,
+        meeting_provider,
+        meeting_room_name,
+        meeting_status
     ) VALUES (
         :patient_id,
         :consultation_type,
@@ -95,12 +108,15 @@ class Appointment
         :appointment_start,
         :appointment_end,
         'scheduled',
-        'pending'
+        'pending',
+        :meeting_provider,
+        :meeting_room_name,
+        :meeting_status
     )";
 
     $stmt = $this->db->prepare($sql);
 
-    return $stmt->execute([
+    $success = $stmt->execute([
         ':patient_id' => $patientId,
         ':consultation_type' => $consultationType,
         ':motif' => $motif,
@@ -108,7 +124,17 @@ class Appointment
         ':postal_code' => $postalCode,
         ':city' => $city,
         ':appointment_start' => $appointmentStart,
-        ':appointment_end' => $appointmentEnd
+        ':appointment_end' => $appointmentEnd,
+        ':meeting_provider' => $meetingProvider,
+        ':meeting_room_name' => $meetingRoomName,
+        ':meeting_status' => $meetingStatus
     ]);
+
+    return [
+        'success' => $success,
+        'meeting_provider' => $meetingProvider,
+        'meeting_room_name' => $meetingRoomName,
+        'meeting_status' => $meetingStatus
+    ];
 }
 }
