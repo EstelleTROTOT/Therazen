@@ -36,19 +36,18 @@ class BookingEngineService
         $current = strtotime($date . ' ' . $this->openingHour);
         $end = strtotime($date . ' ' . $this->closingHour);
 
-        while ($current < $end) {
+       while ($current < $end) {
 
-            if ($this->isSlotAvailable(
-                $current,
-                $appointments,
-                $consultationType
-            )) {
-                $slots[] = date('H:i', $current);
-            }
+    if ($this->isSlotAvailable(
+        $current,
+        $appointments,
+        $consultationType
+    )) {
+        $slots[] = date('H:i', $current);
+    }
 
-            $current = strtotime('+1 hour', $current);
-        }
-
+    $current = strtotime('+1 hour', $current);
+}
         return $slots;
     }
 

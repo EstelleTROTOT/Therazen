@@ -137,85 +137,120 @@ public function informations()
         return;
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_booking'])) {
 
-        $booking = $_SESSION['booking'];
-
-        $userModel = new User();
-
-        $user = $userModel->findByEmail($booking['email']);
-
-        if (!$user) {
-
-            $password = !empty($booking['password'])
-                ? $booking['password']
-                : bin2hex(random_bytes(8));
-
-            $userModel->create(
-                $booking['firstname'],
-                $booking['lastname'],
-                $booking['email'],
-                $password,
-                $booking['phone']
-            );
-
-            $user = $userModel->findByEmail($booking['email']);
-        }
-
-        $patientId = $user['id'];
-
-        $appointmentModel = new Appointment();
-
-        $appointmentStart = $booking['date'] . ' ' . $booking['slot'] . ':00';
-
-        $duration = $booking['type'] === 'consultation_domicile'
-            ? 80
-            : 67;
-
-        $appointmentEnd = date(
-            'Y-m-d H:i:s',
-            strtotime($appointmentStart . " +{$duration} minutes")
-        );
-
-        $appointment = $appointmentModel->createAppointment(
-    $patientId,
-    $booking['type'],
-    $booking['reason'],
-    null,
-    null,
-    null,
-    $appointmentStart,
-    $appointmentEnd
-);
-
-if (
-    $booking['type'] === 'consultation_video'
-    && !empty($appointment['meeting_room_name'])
-) {
-    $booking['meeting_link'] =
-        'https://meet.jit.si/' . $appointment['meeting_room_name'];
-}
-
-$mailService = new MailService();
-$mailService->sendBookingConfirmation($booking);
-
-$_SESSION['successBooking'] = $booking;
-
-if (!empty($booking['meeting_link'])) {
-    $_SESSION['successBooking']['meeting_link']
-        = $booking['meeting_link'];
-}
-
-unset($_SESSION['booking']);
-
-header('Location: ?page=booking-success');
-exit;
-    }
 
     $selectedDate = $_GET['date'] ?? '';
     $selectedType = $_GET['type'] ?? '';
     $slot = $_GET['slot'] ?? '';
 
     require_once __DIR__ . '/../views/booking-informations.php';
+    }
+
+public function stripeCheckout()
+{
+    require_once __DIR__ . '/../services/StripeService.php';
+
+    if (empty($_SESSION['booking'])) {
+        header('Location: ?page=booking');
+        exit;
+    }
+
+    $stripeService = new StripeService();
+
+    $checkoutUrl = $stripeService->createCheckoutSession(
+        $_SESSION['booking']
+    );
+
+    header('Location: ' . $checkoutUrl);
+    exit;
 }
+
+public function stripeSuccess()
+{if (empty($_GET['session_id'])) {
+    header('Location: ?page=booking');
+    exit;
 }
+
+if (empty($_SESSION['booking'])) {
+    header('Location: ?page=booking-success');
+    exit;
+}
+    $booking = $_SESSION['booking'];
+
+if (!empty($_SESSION['stripe_processed'])) {
+    header('Location: ?page=booking-success');
+    exit;
+}
+
+    $userModel = new User();
+
+    $user = $userModel->findByEmail($booking['email']);
+
+    if (!$user) {
+
+        $password = !empty($booking['password'])
+            ? $booking['password']
+            : bin2hex(random_bytes(8));
+
+        $userModel->create(
+            $booking['firstname'],
+            $booking['lastname'],
+            $booking['email'],
+            $password,
+            $booking['phone']
+        );
+
+        $user = $userModel->findByEmail($booking['email']);
+    }
+
+    $patientId = $user['id'];
+
+    $appointmentModel = new Appointment();
+
+    $appointmentStart = $booking['date'] . ' ' . $booking['slot'] . ':00';
+
+    $duration = $booking['type'] === 'consultation_domicile'
+        ? 80
+        : 67;
+
+    $appointmentEnd = date(
+        'Y-m-d H:i:s',
+        strtotime($appointmentStart . " +{$duration} minutes")
+    );
+
+    $appointment = $appointmentModel->createAppointment(
+        $patientId,
+        $booking['type'],
+        $booking['reason'],
+        null,
+        null,
+        null,
+        $appointmentStart,
+        $appointmentEnd
+    );
+
+    if (
+        $booking['type'] === 'consultation_video'
+        && !empty($appointment['meeting_room_name'])
+    ) {
+        $booking['meeting_link'] =
+            'https://meet.jit.si/' . $appointment['meeting_room_name'];
+    }
+
+    $mailService = new MailService();
+    $mailService->sendBookingConfirmation($booking);
+
+    $_SESSION['successBooking'] = $booking;
+
+if (!empty($booking['meeting_link'])) {
+    $_SESSION['successBooking']['meeting_link']
+        = $booking['meeting_link'];
+}
+
+$_SESSION['stripe_processed'] = true;
+
+unset($_SESSION['booking']);                   
+
+    header('Location: ?page=booking-success');
+    exit;
+}}

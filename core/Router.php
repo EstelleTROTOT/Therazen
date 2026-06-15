@@ -60,6 +60,18 @@ class Router
     require_once __DIR__ . '/../views/booking-success.php';
     break;
 
+
+    case 'stripe-checkout':
+    require_once __DIR__ . '/../controllers/BookingController.php';
+    $controller = new BookingController();
+    $controller->stripeCheckout();
+    break;
+
+case 'stripe-success':
+    require_once __DIR__ . '/../controllers/BookingController.php';
+    $controller = new BookingController();
+    $controller->stripeSuccess();
+    break;
             default:
                 echo "Page introuvable";
                 break;

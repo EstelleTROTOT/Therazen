@@ -76,15 +76,13 @@
             <span><?= htmlspecialchars($_SESSION['booking']['phone']) ?></span>
         </div>
 
-        <form method="post" action="?page=booking-informations">
+        <form method="post" action="?page=stripe-checkout">
 
-            <input type="hidden" name="confirm_booking" value="1">
+    <button type="submit" class="btn btn--primary">
+        Payer 42 € et confirmer
+    </button>
 
-            <button type="submit" class="btn btn--primary">
-                Confirmer mon rendez-vous
-            </button>
-
-        </form>
+</form>
 
     </div>
 

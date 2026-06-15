@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'host' => 'sandbox.smtp.mailtrap.io',
-    'port' => 2525,
-    'username' => '4478d183afc850',
-    'password' => '71fe9f5ca41f22',
-    'from_email' => 'noreply@therazen.fr',
-    'from_name' => 'TheraZen'
+    'host' => $_ENV['MAIL_HOST'],
+    'port' => $_ENV['MAIL_PORT'],
+    'username' => $_ENV['MAIL_USERNAME'],
+    'password' => $_ENV['MAIL_PASSWORD'],
+    'from_email' => $_ENV['MAIL_FROM_EMAIL'],
+    'from_name' => $_ENV['MAIL_FROM_NAME']
 ];
