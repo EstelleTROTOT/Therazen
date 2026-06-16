@@ -53,4 +53,8 @@ class StripeService
 
         return $session->url;
     }
+    public function getSession(string $sessionId): Session
+{
+    return Session::retrieve($sessionId);
+}
 }

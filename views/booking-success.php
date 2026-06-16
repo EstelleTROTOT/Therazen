@@ -1,5 +1,8 @@
 <?php
+
+
 $successBooking = $_SESSION['successBooking'] ?? null;
+unset($_SESSION['successBooking']);
 
 if (!$successBooking) {
     header('Location: ?page=home');

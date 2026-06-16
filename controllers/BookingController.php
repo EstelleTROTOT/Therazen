@@ -16,9 +16,7 @@ class BookingController
             'consultation_video'
         );
 
-        echo '<pre>';
-        print_r($slots);
-        echo '</pre>';
+        
     }
 
     public function index()
@@ -166,10 +164,21 @@ public function stripeCheckout()
 }
 
 public function stripeSuccess()
-{if (empty($_GET['session_id'])) {
+{
+    require_once __DIR__ . '/../services/StripeService.php';
+
+$stripeService = new StripeService();
+
+$session = $stripeService->getSession(
+    $_GET['session_id']
+);
+
+if ($session->payment_status !== 'paid') {
+
     header('Location: ?page=booking');
     exit;
 }
+
 
 if (empty($_SESSION['booking'])) {
     header('Location: ?page=booking-success');
@@ -177,10 +186,6 @@ if (empty($_SESSION['booking'])) {
 }
     $booking = $_SESSION['booking'];
 
-if (!empty($_SESSION['stripe_processed'])) {
-    header('Location: ?page=booking-success');
-    exit;
-}
 
     $userModel = new User();
 
@@ -218,6 +223,8 @@ if (!empty($_SESSION['stripe_processed'])) {
         strtotime($appointmentStart . " +{$duration} minutes")
     );
 
+
+
     $appointment = $appointmentModel->createAppointment(
         $patientId,
         $booking['type'],
@@ -226,7 +233,8 @@ if (!empty($_SESSION['stripe_processed'])) {
         null,
         null,
         $appointmentStart,
-        $appointmentEnd
+        $appointmentEnd,
+        $session->id
     );
 
     if (
@@ -247,7 +255,7 @@ if (!empty($booking['meeting_link'])) {
         = $booking['meeting_link'];
 }
 
-$_SESSION['stripe_processed'] = true;
+
 
 unset($_SESSION['booking']);                   
 

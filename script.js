@@ -103,7 +103,7 @@ if (continueBtn) {
 }
             const url = new URL(window.location.href);
 
-            const date = url.searchParams.get("date");
+            const date = continueBtn.dataset.date;
             const type = url.searchParams.get("type");
 
             window.location.href =

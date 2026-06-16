@@ -71,7 +71,8 @@ class Appointment
     ?string $postalCode,
     ?string $city,
     string $appointmentStart,
-    string $appointmentEnd
+    string $appointmentEnd,
+    string $stripeSessionId
 ): array {
 
     $meetingProvider = null;
@@ -94,7 +95,9 @@ class Appointment
         appointment_start,
         appointment_end,
         appointment_status,
+        payment_method,
         payment_status,
+        stripe_session_id,
         meeting_provider,
         meeting_room_name,
         meeting_status
@@ -108,7 +111,9 @@ class Appointment
         :appointment_start,
         :appointment_end,
         'scheduled',
-        'pending',
+        'stripe',
+        'paid',
+        :stripe_session_id,
         :meeting_provider,
         :meeting_room_name,
         :meeting_status
@@ -125,9 +130,11 @@ class Appointment
         ':city' => $city,
         ':appointment_start' => $appointmentStart,
         ':appointment_end' => $appointmentEnd,
+        ':stripe_session_id' => $stripeSessionId,
         ':meeting_provider' => $meetingProvider,
         ':meeting_room_name' => $meetingRoomName,
-        ':meeting_status' => $meetingStatus
+        ':meeting_status' => $meetingStatus,
+        
     ]);
 
     return [
