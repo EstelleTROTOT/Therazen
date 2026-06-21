@@ -1,9 +1,13 @@
 <?php
-
+/** @var bool $isAddressValid */
 /** @var string $selectedDate */
 /** @var string $selectedType */
 /** @var array $dates */
 /** @var array $slots */
+/** @var float|null $distanceKm */
+/** @var int|null $travelMinutes */
+/** @var int $travelFee */
+/** @var int $totalPrice */
 
 ?>
 <!DOCTYPE html>
@@ -223,6 +227,7 @@ $days = [
 <?php endif; ?>
     <?php if ($selectedType === 'consultation_domicile'): ?>
         
+        
 
 <div class="booking__slots-card">
     
@@ -237,20 +242,56 @@ $days = [
 
     <div class="booking__domicile-form">
 
+    <form method="get" action="">
+
+    <input type="hidden" name="page" value="booking">
+    <input type="hidden" name="type" value="consultation_domicile">
+
     <input
-        type="text"
-        class="booking__domicile-input"
-        placeholder="Ex : 100 Rue du Buyat, 01800 Saint-Jean-de-Niost">
+    type="text"
+    name="address"
+    class="booking__domicile-input"
+    placeholder="Ex : 100 Rue du Buyat, 01800 Saint-Jean-de-Niost"
+    pattern=".*[0-9]{5}.*"
+    title="Veuillez saisir une adresse complète avec code postal. Exemple : 100 Rue du Buyat, 01800 Saint-Jean-de-Niost"
+    value="<?= htmlspecialchars($_GET['address'] ?? '') ?>"
+    required>
 
-</div>
+<p class="booking__address-help">
+    Format obligatoire : numéro, rue, code postal et ville.
+    <br>
+    Exemple : 40 Rue de Genève, 01800 Meximieux
+</p>
 
-<div class="booking__domicile-actions">
+    <div class="booking__domicile-actions">
 
-    <button
-        type="button"
-        class="btn btn--primary booking__domicile-button">
-        Calculer mes disponibilités
-    </button>
+        <button
+            type="submit"
+            class="btn btn--primary booking__domicile-button">
+            Continuer
+        </button>
+
+    </div>
+
+</form>
+
+<?php if (!empty($_GET['address'])): ?>
+
+    <?php if ($isAddressValid): ?>
+
+        <p style="margin-top:15px;color:#2e7d32;font-weight:600;">
+            ✅ Adresse vérifiée avec succès
+        </p>
+
+    <?php else: ?>
+
+        <p style="margin-top:15px;color:#c62828;font-weight:600;">
+            ❌ Adresse introuvable. Vérifiez le numéro, la rue, le code postal et la ville.
+        </p>
+
+    <?php endif; ?>
+
+<?php endif; ?>
 
 </div>
 
@@ -260,7 +301,13 @@ $days = [
     <!-- CALENDAR -->
 
 
-<?php if ($selectedType === 'consultation_video'): ?>
+<?php if (
+    $selectedType === 'consultation_video'
+    || (
+        $selectedType === 'consultation_domicile'
+        && $isAddressValid
+    )
+): ?>
 
 <div class="booking__calendar">
 
@@ -320,37 +367,23 @@ $days = [
 
 <!-- SLOTS -->
 
+<?php if (!empty($slots)): ?>
 
-
-<?php if ($selectedType === 'consultation_video'): ?>
-
-<div class="booking__slots">
+<div class="booking__slots-card">
 
     <h2>Créneaux disponibles</h2>
 
-    <div class="booking__slots-card">
+    <div class="booking__hours">
 
-        <div class="booking__slots-top">
+        <?php foreach ($slots as $slot): ?>
 
-            <strong>
-                <?= $days[date('l', strtotime($selectedDate))] . ' ' . date('d', strtotime($selectedDate)) . ' ' . $months[(int) date('n', strtotime($selectedDate))] . ' ' . date('Y', strtotime($selectedDate)) ?>
-            </strong>
+            <button
+                type="button"
+                class="booking__hour">
+                <?= htmlspecialchars($slot) ?>
+            </button>
 
-            <div class="booking__slots-tags">
-                <div class="booking__tag">
-                    <?= $selectedType === 'consultation_domicile' ? 'Consultation à domicile' : 'Consultation vidéo' ?>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="booking__hours">
-
-            <?php foreach ($slots as $slot): ?>
-                <button class="booking__hour"><?= $slot ?></button>
-            <?php endforeach; ?>
-
-        </div>
+        <?php endforeach; ?>
 
     </div>
 
@@ -358,9 +391,52 @@ $days = [
 
 <?php endif; ?>
 
+<?php if (
+    $selectedType === 'consultation_domicile'
+    && !empty($distanceKm)
+): ?>
+
+<div class="booking__travel-summary">
+    <p>
+    <strong>Distance :</strong>
+    <?= $distanceKm ?> km
+</p>
+
+<p>
+    <strong>Temps :</strong>
+    <?= $travelMinutes ?> min
+</p>
+
+    <p>
+        <strong>Consultation :</strong>
+        42 €
+    </p>
+
+    <p>
+        <strong>Frais de déplacement :</strong>
+        <?= $travelFee ?> €
+    </p>
+
+    <p>
+        <strong>Total à payer :</strong>
+        <?= $totalPrice ?> €
+    </p>
+
+</div>
+
+<?php endif; ?>
+
 <!-- NOTICE -->
 
-<?php if ($selectedType === 'consultation_video'): ?>
+<!-- NOTICE -->
+
+<?php if (
+    $selectedType === 'consultation_video'
+    || (
+        $selectedType === 'consultation_domicile'
+        && $isAddressValid
+    )
+): ?>
 
 <p class="booking__notice">
     ℹ️ Le premier créneau disponible tient compte de vos rendez-vous existants, du temps de trajet et du temps de préparation.
@@ -369,6 +445,8 @@ $days = [
 <button
     class="booking__continue btn btn--primary"
     data-date="<?= htmlspecialchars($selectedDate) ?>"
+    data-travel-fee="<?= $travelFee ?>"
+    data-total-price="<?= $totalPrice ?>"
     disabled>
     Continuer
 </button>
@@ -426,8 +504,7 @@ $days = [
 
 </footer>
 
-<script src="../script.js?v=1001"></script>
+<script src="../script.js?v=1002"></script>
 
 </body>
 </html>
-    

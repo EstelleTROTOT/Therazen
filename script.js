@@ -7,15 +7,18 @@ window.onload = function () {
 
     bookingDays.forEach(day => {
 
-        day.addEventListener("click", function () {
+       day.addEventListener("click", function () {
 
-            const date = this.dataset.date;
-            const type = this.dataset.type;
+    const date = this.dataset.date;
+    const type = this.dataset.type;
 
-            window.location.href =
-                `?page=booking&date=${date}&type=${type}`;
+    const url = new URL(window.location.href);
+    const address = url.searchParams.get("address") ?? "";
 
-        });
+    window.location.href =
+        `?page=booking&date=${date}&type=${type}&address=${encodeURIComponent(address)}`;
+
+});
 
     });
 
@@ -45,9 +48,9 @@ window.onload = function () {
 
     const bookingHours = document.querySelectorAll(".booking__hour");
     const continueBtn = document.querySelector(".booking__continue");
-if (continueBtn) {
-    continueBtn.disabled = true;
-}
+    if (continueBtn) {
+        continueBtn.disabled = true;
+    }
     let selectedSlot = null;
 
     bookingHours.forEach(hour => {
@@ -93,21 +96,26 @@ if (continueBtn) {
 
     // Bouton Continuer → étape informations patient
 
-    if (continueBtn) {
+   if (continueBtn) {
 
-        continueBtn.addEventListener("click", function () {
+    continueBtn.addEventListener("click", function () {
 
-            if (!selectedSlot) {
-    alert('Veuillez sélectionner un créneau horaire.');
-    return;
-}
-            const url = new URL(window.location.href);
+        if (!selectedSlot) {
+            alert('Veuillez sélectionner un créneau horaire.');
+            return;
+        }
 
-            const date = continueBtn.dataset.date;
-            const type = url.searchParams.get("type");
+const url = new URL(window.location.href);
 
-            window.location.href =
-                `?page=booking-informations&date=${date}&type=${type}&slot=${encodeURIComponent(selectedSlot)}`;
+const date = continueBtn.dataset.date;
+const type = url.searchParams.get("type");
+const address = url.searchParams.get("address") ?? "";
+
+const travelFee = continueBtn.dataset.travelFee ?? 0;
+const totalPrice = continueBtn.dataset.totalPrice ?? 42;
+
+window.location.href =
+    `?page=booking-informations&date=${date}&type=${type}&slot=${encodeURIComponent(selectedSlot)}&address=${encodeURIComponent(address)}&travel_fee=${travelFee}&total_price=${totalPrice}`;
 
         });
 

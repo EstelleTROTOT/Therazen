@@ -56,6 +56,15 @@
             <span><?= htmlspecialchars($_SESSION['booking']['slot']) ?></span>
         </div>
 
+        <?php if (!empty($_SESSION['booking']['address'])): ?>
+
+<div class="booking__summary-item">
+    <strong>Adresse :</strong>
+    <span><?= htmlspecialchars($_SESSION['booking']['address']) ?></span>
+</div>
+
+<?php endif; ?>
+
         <div class="booking__summary-item">
             <strong>Nom :</strong>
             <span><?= htmlspecialchars($_SESSION['booking']['lastname']) ?></span>
@@ -75,12 +84,13 @@
             <strong>Téléphone :</strong>
             <span><?= htmlspecialchars($_SESSION['booking']['phone']) ?></span>
         </div>
+        
 
         <form method="post" action="?page=stripe-checkout">
 
     <button type="submit" class="btn btn--primary">
-        Payer 42 € et confirmer
-    </button>
+    Payer <?= (int) ($_SESSION['booking']['total_price'] ?? 42) ?> € et confirmer
+</button>
 
 </form>
 

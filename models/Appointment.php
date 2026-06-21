@@ -120,22 +120,21 @@ class Appointment
     )";
 
     $stmt = $this->db->prepare($sql);
+$success = $stmt->execute([
+    ':patient_id' => $patientId,
+    ':consultation_type' => $consultationType,
+    ':motif' => $motif,
+    ':address' => $address,
+    ':postal_code' => $postalCode,
+    ':city' => $city,
+    ':appointment_start' => $appointmentStart,
+    ':appointment_end' => $appointmentEnd,
+    ':stripe_session_id' => $stripeSessionId,
+    ':meeting_provider' => $meetingProvider,
+    ':meeting_room_name' => $meetingRoomName,
+    ':meeting_status' => $meetingStatus,
+]);
 
-    $success = $stmt->execute([
-        ':patient_id' => $patientId,
-        ':consultation_type' => $consultationType,
-        ':motif' => $motif,
-        ':address' => $address,
-        ':postal_code' => $postalCode,
-        ':city' => $city,
-        ':appointment_start' => $appointmentStart,
-        ':appointment_end' => $appointmentEnd,
-        ':stripe_session_id' => $stripeSessionId,
-        ':meeting_provider' => $meetingProvider,
-        ':meeting_room_name' => $meetingRoomName,
-        ':meeting_status' => $meetingStatus,
-        
-    ]);
 
     return [
         'success' => $success,

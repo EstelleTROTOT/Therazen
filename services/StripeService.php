@@ -18,7 +18,8 @@ class StripeService
 
     public function createCheckoutSession(array $booking): string
     {
-        $amount = 4200;
+        $amount = (int) ($booking['total_price'] * 100);
+        
 
         $consultationLabel =
             $booking['type'] === 'consultation_video'

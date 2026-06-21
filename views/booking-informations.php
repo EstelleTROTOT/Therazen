@@ -16,6 +16,7 @@
 $date = $_GET['date'] ?? '';
 $type = $_GET['type'] ?? '';
 $slot = $_GET['slot'] ?? '';
+$address = $_GET['address'] ?? '';
 
 $months = [
     1 => 'Janvier', 2 => 'Février', 3 => 'Mars', 4 => 'Avril',
@@ -106,9 +107,14 @@ $consultationLabel =
     <form class="booking-form" method="post" action="?page=booking-informations">
 
         <input type="hidden" name="appointment_date" value="<?= htmlspecialchars($date) ?>">
-        <input type="hidden" name="appointment_type" value="<?= htmlspecialchars($type) ?>">
-        <input type="hidden" name="appointment_slot" value="<?= htmlspecialchars($slot) ?>">
-        <input type="hidden" name="booking_submit" value="1">
+<input type="hidden" name="appointment_type" value="<?= htmlspecialchars($type) ?>">
+<input type="hidden" name="appointment_slot" value="<?= htmlspecialchars($slot) ?>">
+<input type="hidden" name="appointment_address" value="<?= htmlspecialchars($address) ?>">
+
+<input type="hidden" name="travel_fee" value="<?= htmlspecialchars($_GET['travel_fee'] ?? 0) ?>">
+<input type="hidden" name="total_price" value="<?= htmlspecialchars($_GET['total_price'] ?? 42) ?>">
+
+<input type="hidden" name="booking_submit" value="1">
 
         <div class="booking-form__group">
             <label>Nom *</label>
