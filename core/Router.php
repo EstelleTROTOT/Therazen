@@ -38,6 +38,26 @@ class Router
                 $controller->index();
                 break;
 
+                        case 'dashboard-rendezvous':
+                require_once __DIR__ . '/../controllers/DashboardController.php';
+                $controller = new DashboardController();
+                $controller->rendezvous();
+                break;
+
+            case 'dashboard-profile':
+                require_once __DIR__ . '/../controllers/DashboardController.php';
+                $controller = new DashboardController();
+                $controller->profile();
+                break;
+
+            
+
+            case 'dashboard-payments':
+                require_once __DIR__ . '/../controllers/DashboardController.php';
+                $controller = new DashboardController();
+                $controller->payments();
+                break;
+
             case 'booking-test':
                 require_once __DIR__ . '/../controllers/BookingController.php';
                 $controller = new BookingController();

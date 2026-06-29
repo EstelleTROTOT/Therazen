@@ -3,30 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Connexion TheraZen</title>
+    <link rel="stylesheet" href="/TheraZen/css/style.css?v=<?= time() ?>">
 </head>
 
 <body>
 
-    <h1>Connexion</h1>
+<section class="login">
 
-    <form method="POST" action="?page=login">
-        <input type="email" name="email" placeholder="Email" required>
-        <br><br>
+    <div class="login__card">
 
-        <input type="password" id="password" name="password" placeholder="Mot de passe" required>
-        <br>
+        <h1 class="login__title">Connexion</h1>
 
-        <label for="show-password">
-            <input type="checkbox" id="show-password">
-            Afficher le mot de passe
-        </label>
+        <p class="login__subtitle">
+            Accédez à votre espace patient.
+        </p>
 
-        <br><br>
+        <form class="login__form" method="POST" action="?page=login">
 
-        <button type="submit">Se connecter</button>
-    </form>
+            <input type="email" name="email" placeholder="Email" required>
 
-    <script src="script.js"></script>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+
+            <label class="login__checkbox" for="show-password">
+                <input type="checkbox" id="show-password">
+                Afficher le mot de passe
+            </label>
+
+            <button type="submit" class="login__button">
+                Se connecter
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script src="/TheraZen/script.js?v=999"></script>
 
 </body>
+
 </html>

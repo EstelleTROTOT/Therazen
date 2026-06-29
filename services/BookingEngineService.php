@@ -48,6 +48,7 @@ class BookingEngineService
 
     $current = strtotime('+1 hour', $current);
 }
+
         return $slots;
     }
 

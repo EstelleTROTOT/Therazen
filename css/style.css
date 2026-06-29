@@ -1868,3 +1868,1242 @@ h1, h2, h3 {
     transform: none !important;
     box-shadow: none !important;
 }
+
+
+/* =====================================
+   LOGIN THERAZEN
+===================================== */
+
+.login {
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 12%;
+    background: url('../images/loginfond.png') center center / cover no-repeat;
+}
+
+.login__card {
+    width: 100%;
+    max-width: 560px;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+    border-radius: 35px;
+    padding: 50px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.08);
+}
+
+.login__icon {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #efe7dc;
+    border-radius: 50%;
+}
+
+.login__icon img {
+    width: 55px;
+}
+
+.login__title {
+    text-align: center;
+    font-size: 4rem;
+    color: #4f6c56;
+    font-weight: 500;
+    margin-bottom: 15px;
+    font-family: Georgia, serif;
+}
+
+.login__subtitle {
+    text-align: center;
+    color: #5f6464;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.login__separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.login__separator::before,
+.login__separator::after {
+    content: "";
+    width: 60px;
+    height: 2px;
+    background: #8ca18f;
+}
+
+.login__separator img {
+    width: 22px;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login__form input[type="email"],
+.login__form input[type="password"],
+.login__form input[type="text"] {
+    width: 100%;
+    height: 75px;
+    border: 1px solid #ddd7cf;
+    border-radius: 18px;
+    padding: 0 25px;
+    font-size: 1.2rem;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.login__form input:focus {
+    outline: none;
+    border-color: #56745c;
+}
+
+.login__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #3f3f3f;
+    font-size: 1.05rem;
+}
+
+.login__button {
+    height: 78px;
+    border: none;
+    border-radius: 18px;
+    background: #4f6f57;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login__button:hover {
+    background: #44614c;
+}
+
+.login__forgot {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.login__forgot a {
+    color: #4f6f57;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.login__register {
+    text-align: center;
+    margin-top: 25px;
+    color: #555;
+}
+
+.login__register a {
+    color: #4f6f57;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login__security {
+    margin-top: 40px;
+    text-align: center;
+    color: #6a6a6a;
+    font-size: .95rem;
+}
+
+/* ==========================
+   TABLETTE
+========================== */
+
+@media (max-width: 1024px) {
+
+    .login {
+        justify-content: center;
+        padding: 40px;
+        background-position: left center;
+    }
+
+    .login__card {
+        max-width: 600px;
+    }
+
+    .login__title {
+        font-size: 3rem;
+    }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px) {
+
+    .login {
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background-position: center;
+    }
+
+    .login__card {
+        width: 100%;
+        max-width: 100%;
+        padding: 30px 25px;
+        border-radius: 25px;
+    }
+
+    .login__icon {
+        width: 85px;
+        height: 85px;
+    }
+
+    .login__icon img {
+        width: 42px;
+    }
+
+    .login__title {
+        font-size: 2.5rem;
+    }
+
+    .login__subtitle {
+        font-size: 1rem;
+    }
+
+    .login__separator::before,
+    .login__separator::after {
+        width: 40px;
+    }
+
+    .login__form input[type="email"],
+    .login__form input[type="password"] {
+        height: 60px;
+        font-size: 1rem;
+    }
+
+    .login__button {
+        height: 65px;
+        font-size: 1.1rem;
+    }
+
+    .login__forgot,
+    .login__register,
+    .login__security {
+        font-size: .9rem;
+    }
+}
+
+/* ==========================
+   PETITS TELEPHONES
+========================== */
+
+@media (max-width: 480px) {
+
+    .login {
+        padding: 15px;
+    }
+
+    .login__card {
+        padding: 25px 20px;
+    }
+
+    .login__title {
+        font-size: 2rem;
+    }
+
+    .login__icon {
+        width: 75px;
+        height: 75px;
+    }
+
+    .login__icon img {
+        width: 35px;
+    }
+
+    .login__separator::before,
+    .login__separator::after {
+        width: 25px;
+    }
+} 
+
+/* =====================================
+DASHBOARD PATIENT
+===================================== */
+
+.dashboard {
+display: flex;
+min-height: 100vh;
+background: #f8f5ef;
+}
+
+/* SIDEBAR */
+
+.dashboard__sidebar {
+width: 290px;
+background: #456556;
+color: #fff;
+padding: 35px 25px;
+display: flex;
+flex-direction: column;
+flex-shrink: 0;
+}
+
+.dashboard__logo {
+text-align: center;
+margin-bottom: 40px;
+}
+
+.dashboard__logo img {
+width: 170px;
+margin: auto;
+}
+
+.dashboard__avatar {
+width: 95px;
+height: 95px;
+border-radius: 50%;
+overflow: hidden;
+margin: 0 auto 15px;
+border: 4px solid rgba(255,255,255,.15);
+}
+
+.dashboard__avatar img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.dashboard__profile {
+text-align: center;
+margin-bottom: 40px;
+}
+
+.dashboard__profile h3 {
+color: #fff;
+margin-bottom: 6px;
+}
+
+.dashboard__profile p {
+color: rgba(255,255,255,.8);
+}
+
+.dashboard__menu {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.dashboard__menu a {
+padding: 16px 20px;
+border-radius: 18px;
+color: #fff;
+transition: .3s;
+background: rgba(255,255,255,.06);
+border: 1px solid rgba(255,255,255,.08);
+box-shadow: 0 4px 12px rgba(0,0,0,.05);
+}
+
+.dashboard__menu a:hover,
+.dashboard__menu-link--active {
+background: rgba(255,255,255,.16);
+border-color: rgba(255,255,255,.18);
+transform: translateX(4px);
+}
+
+.dashboard__help {
+margin-top: auto;
+background: rgba(255,255,255,.08);
+border-radius: 20px;
+padding: 20px;
+}
+
+.dashboard__help h4 {
+color: #fff;
+margin-bottom: 10px;
+}
+
+.dashboard__help p {
+color: rgba(255,255,255,.8);
+font-size: .95rem;
+margin-bottom: 20px;
+}
+
+/* CONTENU */
+
+.dashboard__content {
+flex: 1;
+padding: 45px;
+}
+
+.dashboard__header {
+margin-bottom: 30px;
+}
+
+.dashboard__header h1 {
+font-size: 3rem;
+color: #173f36;
+margin-bottom: 10px;
+}
+
+.dashboard__header p {
+color: #6d6d6d;
+}
+
+/* HERO */
+
+.dashboard__hero {
+background: linear-gradient(135deg,#ffffff,#f5efe6);
+border-radius: 32px;
+padding: 45px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 40px;
+border: 1px solid #ece5db;
+box-shadow: 0 20px 45px rgba(0,0,0,.07);
+margin-bottom: 35px;
+min-height: 280px;
+overflow: hidden;
+position: relative;
+}
+
+.dashboard__hero-left {
+flex: 1;
+}
+
+.dashboard__hero-right {
+width: 420px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.dashboard__hero-illustration {
+width: 420px;
+height: 260px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.dashboard__hero-illustration img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 24px;
+box-shadow: 0 15px 35px rgba(0,0,0,.10);
+}
+
+.dashboard__badge {
+display: inline-block;
+background: #eef4ee;
+color: #456556;
+padding: 10px 16px;
+border-radius: 999px;
+font-size: .9rem;
+font-weight: 600;
+margin-bottom: 20px;
+}
+
+.dashboard__hero h2 {
+color: #173f36;
+font-size: 2.8rem;
+line-height: 1.1;
+margin-bottom: 15px;
+max-width: 600px;
+}
+
+.dashboard__hero-date {
+color: #666;
+margin-bottom: 25px;
+font-size: 1.05rem;
+}
+
+/* CARDS */
+
+.dashboard__cards {
+display: grid;
+grid-template-columns: repeat(3,1fr);
+gap: 25px;
+margin-bottom: 25px;
+}
+
+.dashboard__card {
+background: #fff;
+border-radius: 28px;
+padding: 30px;
+border: 1px solid #ece5db;
+box-shadow: 0 10px 25px rgba(0,0,0,.04);
+}
+
+.dashboard__card-header {
+display: inline-flex;
+align-items: center;
+padding: 10px 16px;
+margin-bottom: 25px;
+background: #eef4ee;
+border-radius: 999px;
+}
+
+.dashboard__card-header h3 {
+margin: 0;
+color: #456556;
+font-size: 1rem;
+font-weight: 600;
+}
+
+.dashboard__info {
+display: flex;
+justify-content: space-between;
+padding: 15px 0;
+border-bottom: 1px solid #ece5db;
+}
+
+.dashboard__link {
+display: inline-block;
+margin-top: 20px;
+color: #456556;
+font-weight: 600;
+}
+
+/* PAIEMENTS */
+
+.dashboard__payments {
+background: #fff;
+border-radius: 28px;
+padding: 30px;
+border: 1px solid #ece5db;
+box-shadow: 0 10px 25px rgba(0,0,0,.04);
+}
+
+.dashboard__payments-header {
+margin-bottom: 15px;
+}
+
+
+/* =====================================
+RENDEZ-VOUS
+===================================== */
+
+.dashboard-rdv {
+display: flex;
+flex-direction: column;
+gap: 25px;
+margin-top: 30px;
+}
+
+.dashboard-rdv__card {
+background: #fff;
+border-radius: 28px;
+padding: 25px;
+border: 1px solid #ece5db;
+box-shadow: 0 10px 25px rgba(0,0,0,.04);
+}
+
+.dashboard-rdv__header {
+font-size: 1.5rem;
+font-weight: 600;
+color: #173f36;
+margin-bottom: 20px;
+}
+
+.dashboard-rdv__table {
+width: 100%;
+border-collapse: collapse;
+overflow: hidden;
+border-radius: 18px;
+}
+
+.dashboard-rdv__table thead tr {
+background: #f1f4ef;
+}
+
+.dashboard-rdv__table th {
+padding: 18px 25px;
+text-align: left;
+color: #173f36;
+font-weight: 600;
+}
+
+.dashboard-rdv__table td {
+padding: 18px 25px;
+border-top: 1px solid #ece5db;
+}
+
+.dashboard-rdv__status {
+display: inline-block;
+padding: 8px 14px;
+border-radius: 999px;
+background: #f3f3f3;
+font-size: .9rem;
+}
+
+.dashboard-rdv__status--success {
+background: #dff2df;
+color: #2d6a39;
+}
+
+/* TABLETTE */
+
+@media (max-width: 1200px) {
+
+```
+.dashboard__cards {
+    grid-template-columns: repeat(2,1fr);
+}
+
+.dashboard__hero {
+    flex-direction: column;
+    text-align: center;
+}
+
+.dashboard__hero-right {
+    width: auto;
+}
+```
+
+}
+
+@media (max-width: 1024px) {
+
+```
+.dashboard {
+    flex-direction: column;
+}
+
+.dashboard__sidebar {
+    width: 100%;
+}
+
+.dashboard__content {
+    padding: 30px;
+}
+
+.dashboard__cards {
+    grid-template-columns: 1fr;
+}
+```
+
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+```
+.dashboard__content {
+    padding: 20px;
+}
+
+.dashboard__header h1 {
+    font-size: 2rem;
+}
+
+.dashboard__hero {
+    padding: 25px;
+}
+
+.dashboard__hero h2 {
+    font-size: 1.7rem;
+}
+
+.dashboard__hero-illustration {
+    width: 130px;
+    height: 130px;
+    font-size: 3rem;
+}
+
+.dashboard__card,
+.dashboard__payments {
+    padding: 22px;
+}
+
+.dashboard__info {
+    flex-direction: column;
+    gap: 5px;
+}
+```
+
+}
+
+
+/* ===========================
+   PAGE PAIEMENTS
+=========================== */
+
+.dashboard-content{
+    display:flex;
+    flex-direction:column;
+    gap:35px;
+}
+
+/* HEADER */
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    padding-bottom:25px;
+    border-bottom:1px solid #e8e4dc;
+}
+
+.dashboard-header h1{
+    font-size:52px;
+    color:#294c3b;
+    font-family:"Cormorant Garamond",serif;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.dashboard-header h1 i{
+    margin-left:8px;
+    font-size:36px;
+}
+
+.dashboard-header p{
+    font-size:28px;
+    color:#5d5d5d;
+}
+
+/* Bouton */
+
+.btn-primary{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 28px;
+    background:#365846;
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.btn-primary:hover{
+    background:#294638;
+}
+
+/* ========================= */
+
+.payment-card{
+
+    background:#fff;
+    border-radius:20px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.05);
+
+    border:1px solid #ece7df;
+
+    padding:22px;
+
+}
+
+/* ========================= */
+
+.payment-table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+.payment-table thead th{
+
+    text-align:left;
+
+    padding:22px 24px;
+
+    font-size:18px;
+
+    color:#2f2f2f;
+
+    font-weight:700;
+
+    border-bottom:1px solid #ebe6de;
+
+}
+
+.payment-table tbody td{
+
+    padding:28px 24px;
+
+    font-size:17px;
+
+    color:#2d2d2d;
+
+    border-bottom:1px solid #f1efeb;
+
+}
+
+.payment-table tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+/* ========================= */
+
+.btn-download{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 20px;
+
+    border:1px solid #a9c0b2;
+
+    border-radius:10px;
+
+    color:#365846;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    background:white;
+
+}
+
+.btn-download:hover{
+
+    background:#365846;
+
+    color:white;
+
+}
+
+/* ========================= */
+
+.empty-payment{
+
+    text-align:center;
+
+    padding:45px;
+
+    color:#777;
+
+}
+
+/* ===========================
+        TABLETTE
+=========================== */
+
+@media(max-width:1200px){
+
+.dashboard-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.dashboard-header h1{
+
+font-size:42px;
+
+}
+
+.dashboard-header p{
+
+font-size:22px;
+
+}
+
+.payment-table th,
+
+.payment-table td{
+
+padding:20px 16px;
+
+font-size:16px;
+
+}
+
+}
+
+/* ===========================
+        MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.dashboard-header{
+
+gap:20px;
+
+}
+
+.dashboard-header h1{
+
+font-size:34px;
+
+}
+
+.dashboard-header p{
+
+font-size:18px;
+
+}
+
+.btn-primary{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+.payment-card{
+
+padding:15px;
+
+overflow-x:auto;
+
+}
+
+.payment-table{
+
+min-width:650px;
+
+}
+
+.btn-download{
+
+padding:10px 16px;
+
+font-size:15px;
+
+}
+
+}
+
+/* ===========================
+      PETITS MOBILES
+=========================== */
+
+@media(max-width:480px){
+
+.dashboard-header h1{
+
+font-size:30px;
+
+}
+
+.dashboard-header p{
+
+font-size:16px;
+
+}
+
+.payment-card{
+
+padding:12px;
+
+}
+
+.payment-table th{
+
+font-size:15px;
+
+}
+
+.payment-table td{
+
+font-size:14px;
+
+padding:18px 12px;
+
+}
+
+.btn-download{
+
+font-size:14px;
+
+padding:9px 14px;
+
+}
+
+}
+
+
+/* =======================================================
+   DASHBOARD - PAIEMENTS
+======================================================= */
+
+.dashboard-content{
+    flex:1;
+    padding:40px;
+}
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.dashboard-header h1{
+    font-size:2.2rem;
+    color:#355846;
+    margin-bottom:10px;
+}
+
+.dashboard-header p{
+    color:#6c756e;
+    font-size:1rem;
+}
+
+.payment-card{
+    background:#ffffff;
+    border-radius:22px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.05);
+}
+
+.payment-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.payment-table thead{
+    background:#f3f5f1;
+}
+
+.payment-table th{
+    text-align:left;
+    padding:18px;
+    color:#355846;
+    font-size:0.95rem;
+    font-weight:600;
+}
+
+.payment-table td{
+    padding:18px;
+    border-bottom:1px solid #ececec;
+    color:#4d4d4d;
+}
+
+.payment-table tr:last-child td{
+    border-bottom:none;
+}
+
+.empty-payment{
+    text-align:center;
+    padding:40px;
+    color:#8a8a8a;
+    font-style:italic;
+}
+
+.btn-download{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#355846;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    transition:.25s;
+}
+
+.btn-download:hover{
+    background:#496c59;
+}
+
+.btn-primary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:#355846;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-primary:hover{
+    background:#496c59;
+}
+
+/* ===========================
+        TABLETTE
+=========================== */
+
+@media screen and (max-width:992px){
+
+    .dashboard-content{
+        padding:25px;
+    }
+
+    .dashboard-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .payment-card{
+        overflow-x:auto;
+    }
+
+    .payment-table{
+        min-width:700px;
+    }
+
+}
+
+/* ===========================
+         MOBILE
+=========================== */
+
+@media screen and (max-width:768px){
+
+    .dashboard-content{
+        padding:18px;
+    }
+
+    .dashboard-header h1{
+        font-size:1.8rem;
+    }
+
+    .dashboard-header p{
+        font-size:.95rem;
+    }
+
+    .btn-primary{
+        width:100%;
+    }
+
+    .payment-card{
+        padding:20px;
+    }
+
+}.dashboard__edit-profile{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:25px;
+    width:100%;
+}
+/* ==========================================
+        MODAL PROFIL
+========================================== */
+
+.dashboard-modal{
+
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:9999;
+
+}
+
+.dashboard-modal--active{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+.dashboard-modal__content{
+
+    background:#fff;
+
+    width:90%;
+    max-width:550px;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    position:relative;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.15);
+
+}
+
+.dashboard-modal__close{
+
+    position:absolute;
+
+    right:20px;
+    top:20px;
+
+    border:none;
+    background:none;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+.dashboard-modal__group{
+
+    display:flex;
+    flex-direction:column;
+
+    margin-bottom:20px;
+
+}
+
+.dashboard-modal__group label{
+
+    margin-bottom:8px;
+
+    color:#355846;
+
+    font-weight:600;
+
+}
+
+.dashboard-modal__group input{
+
+    padding:14px;
+
+    border:1px solid #d7ddd7;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+}
+
+.dashboard-modal .btn{
+
+    width:100%;
+
+    margin-top:15px;
+
+}

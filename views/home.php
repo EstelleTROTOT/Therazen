@@ -30,7 +30,7 @@
                 ☰
             </button>
             <div class="navbar__actions">
-                <button class="btn btn--secondary">Se connecter</button>
+                <a href="?page=login" class="btn btn--secondary">Se connecter</a>
                 <a href="?page=booking" class="btn btn--primary">Prendre rendez-vous</a>
             </div>
 
@@ -42,7 +42,7 @@
             <a href="#">À propos</a>
             <a href="#">Contact</a>
 
-            <button class="btn btn--secondary">Se connecter</button>
+            <a href="?page=login" class="btn btn--secondary">Se connecter</a>
             <a href="?page=booking" class="btn btn--primary">Prendre rendez-vous</a>
         </div>
     </header>

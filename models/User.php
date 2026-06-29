@@ -29,13 +29,33 @@ class User
         ]);
     }
 
-    public function findByEmail($email)
-    {
-        $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+   public function findByEmail($email)
+{
+    $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
 
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':email' => $email]);
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([':email' => $email]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function updateProfile($id, $firstName, $lastName, $email, $phone)
+{
+    $sql = "UPDATE users
+            SET first_name = :first_name,
+                last_name = :last_name,
+                email = :email,
+                phone = :phone
+            WHERE id = :id";
+
+    $stmt = $this->db->prepare($sql);
+
+    return $stmt->execute([
+        ':id' => $id,
+        ':first_name' => $firstName,
+        ':last_name' => $lastName,
+        ':email' => $email,
+        ':phone' => $phone
+    ]);
+}
 }

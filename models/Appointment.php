@@ -136,11 +136,45 @@ $success = $stmt->execute([
 ]);
 
 
-    return [
+        return [
         'success' => $success,
         'meeting_provider' => $meetingProvider,
         'meeting_room_name' => $meetingRoomName,
         'meeting_status' => $meetingStatus
     ];
 }
+
+public function getNextAppointmentByPatientId(int $patientId)
+{
+    $sql = "SELECT *
+            FROM appointments
+            WHERE patient_id = :patient_id
+            AND appointment_status = 'scheduled'
+            AND appointment_start >= NOW()
+            ORDER BY appointment_start ASC
+            LIMIT 1";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([
+        ':patient_id' => $patientId
+    ]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+public function getAppointmentsByPatientId(int $patientId)
+{
+    $sql = "SELECT *
+            FROM appointments
+            WHERE patient_id = :patient_id
+            ORDER BY appointment_start DESC";
+
+    $stmt = $this->db->prepare($sql);
+
+    $stmt->execute([
+        ':patient_id' => $patientId
+    ]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }

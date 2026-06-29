@@ -15,13 +15,21 @@ class AuthController
 
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user'] = [
-                    'id' => $user['id'],
-                    'first_name' => $user['first_name'],
-                    'role' => $user['role']
-                ];
+    'id'         => $user['id'],
+    'first_name' => $user['first_name'],
+    'last_name'  => $user['last_name'],
+    'email'      => $user['email'],
+    'phone'      => $user['phone'],
+    'role'       => $user['role']
+];
 
-                echo "Connexion réussie 🎉";
-                return;
+                if ($user['role'] === 'admin') {
+    header('Location: ?page=dashboard');
+    exit;
+}
+
+header('Location: ?page=home');
+exit;
             } else {
                 echo "Email ou mot de passe incorrect";
                 return;
